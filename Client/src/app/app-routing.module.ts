@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { ContentComponent } from './content/content/content.component';
 
 const routes: Routes = [
@@ -40,6 +40,7 @@ const routes: Routes = [
 
 ];
 
+//  {preloadingStrategy: PreloadAllModules}
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
