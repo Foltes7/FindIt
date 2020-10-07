@@ -1,1 +1,19 @@
-<p>header works!</p>
+<div class="header-container">
+    <div class="icon-container" routerLink="/" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">
+        <i class="icon-home"></i>
+    </div>
+    <div class="icon-container" routerLink="/saved" routerLinkActive="active">
+        <i class="icon-label"></i>
+    </div>
+    <div class="icon-container" routerLink="/search" routerLinkActive="active">
+        <i class="icon-search"></i>
+    </div>
+    <div class="icon-container" routerLink="/messages" routerLinkActive="active">
+        <i class="icon-message"></i>
+    </div>
+    <div class="profile" routerLink="/profile/1" routerLinkActive="active">
+        <div class="photo">
+
+        </div>
+    </div>
+</div>
