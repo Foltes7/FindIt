@@ -29,8 +29,7 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "src/styles.scss",
-              "./node_modules/roboto-fontface/css/roboto/roboto-fontface.css",
-              "./node_modules/semantic-ui-css/semantic.min.css"
+              "./node_modules/roboto-fontface/css/roboto/roboto-fontface.css"
             ],
             "scripts": []
           },
