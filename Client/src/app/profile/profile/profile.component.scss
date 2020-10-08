@@ -41,9 +41,12 @@
         margin-top: 15px;
       }
       p {
-        margin-top: 20px;
+        margin-top: 15px;
         font-weight: 400;
         cursor: pointer;
+        &:hover {
+          font-weight: 500;
+        }
       }
     }
     .info-divider {
@@ -54,7 +57,7 @@
       background-color: #e7e7e7;
     }
     .information {
-      margin-top: 25px;
+      margin-top: 20px;
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -68,10 +71,21 @@
       }
     }
     .buttons-section {
-      margin-top: 20px;
+      margin-top: 15px;
       width: 100%;
       display: flex;
       flex-direction: column;
+    }
+    .description {
+      margin-top: 15px;
+    }
+    .admin-buttons {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      app-clickable {
+        margin-top: 15px;
+      }
     }
   }
   .divider {

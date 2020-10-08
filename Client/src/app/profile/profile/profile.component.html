@@ -4,28 +4,48 @@
             <img *ngIf="user?.profile_image.large" [src]="user?.profile_image.large" />
             <img class="default" *ngIf="!user?.profile_image.large" src="assets/images/default_user.svg">
         </div>
+
         <div class="information">
             <p class="name">Tesla Official</p>
             <p class="username">@tesla</p>
         </div>
-        <div class="info-divider"></div>
-        <div class="buttons-section">
+
+        <div *ngIf="!admin" class="info-divider"></div>
+        <div *ngIf="!admin" class="buttons-section">
             <app-clickable [height]="'34px'" [width]="'100%'" [text]="'Contact'" [textColor]="'#10a1ff'"
                 [borderColor]="'#10a1ff'">
             </app-clickable>
         </div>
+
         <div class="info-divider"></div>
         <div class="following">
             <p>0 followers</p>
             <p>12.2k following</p>
-            <app-clickable *ngIf="!followed" [height]="'34px'" [width]="'100%'" [text]="'Follow'"
+            <app-clickable *ngIf="!followed && !admin" [height]="'34px'" [width]="'100%'" [text]="'Follow'"
                 [textColor]="'#10a1ff'" [borderColor]="'#10a1ff'">
             </app-clickable>
-            <app-clickable *ngIf="followed" [height]="'34px'" [width]="'100%'" [text]="'Unfollow'"
+            <app-clickable *ngIf="followed && !admin" [height]="'34px'" [width]="'100%'" [text]="'Unfollow'"
                 [borderColor]="'#d5d5d5'">
             </app-clickable>
         </div>
+
+
         <div class="info-divider"></div>
+        <div class="description">
+            <p>Under the creative direction of Gucci is redefined a
+                s a luxury brand with a contemporary approach to fashion.</p>
+        </div>
+
+        <div *ngIf="admin" class="info-divider"></div>
+        <div *ngIf="admin" class="admin-buttons">
+            <app-clickable [height]="'34px'" [width]="'100%'" [text]="'Edit profile'" [borderColor]="'#d5d5d5'">
+            </app-clickable>
+            <app-clickable [height]="'34px'" [width]="'100%'" [text]="'New service'" [borderColor]="'#d5d5d5'">
+            </app-clickable>
+            <app-clickable [height]="'34px'" [width]="'100%'" [text]="'New product'" [borderColor]="'#d5d5d5'">
+            </app-clickable>
+        </div>
+
     </div>
     <div class="divider">
 
