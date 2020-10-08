@@ -50,15 +50,12 @@ header {
     .icon-container {
       position: relative;
       height: 100%;
-      width: 55px;
+      width: 70px;
       display: flex;
       align-items: center;
       justify-content: center;
       outline: none;
       transition: 0.1s ease-in-out;
-      &:not(:first-child) {
-        margin-left: 15px;
-      }
 
       &:hover {
         cursor: pointer;
@@ -67,16 +64,15 @@ header {
       .counter {
         position: absolute;
         bottom: 3px;
-        right: 0;
-        color: $main-color;
+        right: 13px;
+        color: #ffcaac;
         font-size: 0.75rem;
       }
     }
 
     .profile {
       height: 100%;
-      width: 55px;
-      margin-left: 15px;
+      width: 70px;
       display: flex;
       align-items: center;
       justify-content: center;
