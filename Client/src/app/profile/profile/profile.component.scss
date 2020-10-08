@@ -1,0 +1,72 @@
+@import "variables";
+
+.content {
+  height: 100vh;
+  display: flex;
+  .profile {
+    width: 18%;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 60px;
+    padding-right: 30px;
+    .photo {
+      margin-top: 35px;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        border-radius: 50%;
+        height: 150px;
+        object-fit: cover;
+      }
+      .default {
+        border-radius: 0;
+        height: 60px;
+        object-fit: cover;
+      }
+    }
+    .without-photo-border {
+      border: 1px solid #a8a8a8;
+    }
+    .following {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      p {
+        margin-top: 20px;
+        font-weight: 500;
+        cursor: pointer;
+      }
+    }
+    .info-divider {
+      margin-top: 15px;
+      width: 100%;
+      height: 2px;
+      border-bottom: 10px;
+      background-color: #e7e7e7;
+    }
+    .information {
+      margin-top: 25px;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      .name {
+        font-weight: bold;
+        font-size: 1.375rem;
+      }
+      .username {
+        margin-top: 15px;
+        font-size: 1.125rem;
+      }
+    }
+  }
+  .divider {
+    width: 1px;
+    background-color: $divider-color;
+  }
+}

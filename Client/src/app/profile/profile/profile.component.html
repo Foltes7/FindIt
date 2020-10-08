@@ -1,1 +1,24 @@
-<p>profile works!</p>
+<div class="content">
+    <div class="profile">
+        <div class="photo" [ngClass]="{'without-photo-border': !user?.profile_image.large}">
+            <img *ngIf="user?.profile_image.large" [src]="user?.profile_image.large" />
+            <img class="default" *ngIf="!user?.profile_image.large" src="assets/images/default_user.svg">
+        </div>
+        <div class="information">
+            <p class="name">Tesla Official</p>
+            <p class="username">@tesla</p>
+        </div>
+        <div class="info-divider"></div>
+        <div class="following">
+            <p>0 followers</p>
+            <p>12.2k following</p>
+        </div>
+        <div class="info-divider"></div>
+    </div>
+    <div class="divider">
+
+    </div>
+    <div class="content-inner">
+        <router-outlet></router-outlet>
+    </div>
+</div>
