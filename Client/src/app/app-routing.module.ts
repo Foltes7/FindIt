@@ -24,7 +24,7 @@ const routes: Routes = [
         loadChildren: () => import('./messages/messages.module').then(m => m.MessagesModule),
       },
       {
-        path: 'profile/:id',
+        path: 'profile/:id/services',
         loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule),
       },
     ]
@@ -42,7 +42,7 @@ const routes: Routes = [
 
 //  {preloadingStrategy: PreloadAllModules}
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
