@@ -9,9 +9,21 @@
             <p class="username">@tesla</p>
         </div>
         <div class="info-divider"></div>
+        <div class="buttons-section">
+            <app-clickable [height]="'34px'" [width]="'100%'" [text]="'Contact'" [textColor]="'#10a1ff'"
+                [borderColor]="'#10a1ff'">
+            </app-clickable>
+        </div>
+        <div class="info-divider"></div>
         <div class="following">
             <p>0 followers</p>
             <p>12.2k following</p>
+            <app-clickable *ngIf="!followed" [height]="'34px'" [width]="'100%'" [text]="'Follow'"
+                [textColor]="'#10a1ff'" [borderColor]="'#10a1ff'">
+            </app-clickable>
+            <app-clickable *ngIf="followed" [height]="'34px'" [width]="'100%'" [text]="'Unfollow'"
+                [borderColor]="'#d5d5d5'">
+            </app-clickable>
         </div>
         <div class="info-divider"></div>
     </div>

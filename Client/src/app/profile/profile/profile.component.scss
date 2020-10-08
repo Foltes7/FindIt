@@ -4,7 +4,7 @@
   height: 100vh;
   display: flex;
   .profile {
-    width: 18%;
+    width: 15%;
     min-width: 250px;
     display: flex;
     flex-direction: column;
@@ -37,9 +37,12 @@
       display: flex;
       flex-direction: column;
       width: 100%;
+      app-clickable {
+        margin-top: 15px;
+      }
       p {
         margin-top: 20px;
-        font-weight: 500;
+        font-weight: 400;
         cursor: pointer;
       }
     }
@@ -63,6 +66,12 @@
         margin-top: 15px;
         font-size: 1.125rem;
       }
+    }
+    .buttons-section {
+      margin-top: 20px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
     }
   }
   .divider {
