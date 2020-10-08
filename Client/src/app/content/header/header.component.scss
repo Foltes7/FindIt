@@ -79,10 +79,17 @@ header {
       outline: none;
       transition: 0.1s ease-in-out;
       .photo {
-        width: 1.625rem;
-        height: 1.625rem;
-        background-color: white;
+        width: 2rem;
+        height: 2rem;
         border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+          border-radius: 50%;
+          object-fit: cover;
+          height: 2rem;
+        }
       }
       &:hover {
         cursor: pointer;
