@@ -56,9 +56,10 @@ header {
       justify-content: center;
       outline: none;
       transition: 0.1s ease-in-out;
+      cursor: pointer;
 
       &:hover {
-        cursor: pointer;
+        border-bottom: 3px solid #181818;
       }
 
       .counter {
@@ -78,6 +79,7 @@ header {
       justify-content: center;
       outline: none;
       transition: 0.1s ease-in-out;
+      cursor: pointer;
       .photo {
         width: 2rem;
         height: 2rem;
@@ -92,12 +94,12 @@ header {
         }
       }
       &:hover {
-        cursor: pointer;
+        border-bottom: 3px solid #181818;
       }
     }
 
     .active {
-      border-bottom: 3px solid $main-color;
+      border-bottom: 3px solid $main-color !important;
     }
   }
 }
