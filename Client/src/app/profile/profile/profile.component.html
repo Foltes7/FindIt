@@ -62,10 +62,23 @@
             </app-clickable>
         </div>
     </div>
-    <div class="divider">
-
-    </div>
+    <div class="divider"></div>
     <div class="content-inner">
-        <router-outlet></router-outlet>
+        <div class="navigation">
+            <div class="nav-items gap">
+                <div class="item" routerLink="products" routerLinkActive="active">
+                    <p>Products</p>
+                </div>
+                <div class="item" routerLink="services" routerLinkActive="active">
+                    <p>Services</p>
+                </div>
+            </div>
+            <div class="nav-divider">
+
+            </div>
+        </div>
+        <div class="gap">
+            <router-outlet></router-outlet>
+        </div>
     </div>
 </div>

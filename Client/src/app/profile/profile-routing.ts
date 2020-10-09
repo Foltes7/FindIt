@@ -5,12 +5,13 @@ import { ServicesComponent } from './services/services.component';
 import { ProductsComponent } from './products/products.component';
 
 const childrenRoutes: Routes = [
-  {path: '', component: ProductsComponent},
+  {path: 'products', component: ProductsComponent},
   {path: 'services', component: ServicesComponent},
 ];
 
 const routes: Routes = [
-  { path: '', component: ProfileComponent, children: childrenRoutes },
+  { path: ':id', redirectTo: '/profile/:id/products', pathMatch: 'full' },
+  { path: ':id', component: ProfileComponent, children: childrenRoutes}
 ];
 
 @NgModule({

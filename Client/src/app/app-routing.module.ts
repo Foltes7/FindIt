@@ -24,7 +24,7 @@ const routes: Routes = [
         loadChildren: () => import('./messages/messages.module').then(m => m.MessagesModule),
       },
       {
-        path: 'profile/:id/products',
+        path: 'profile',
         loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule),
       },
     ]

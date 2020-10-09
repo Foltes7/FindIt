@@ -9,8 +9,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-left: 60px;
+    padding-left: 50px;
     padding-right: 30px;
+    border-right: 1px solid $divider-color;
     .photo {
       margin-top: 35px;
       width: 150px;
@@ -123,8 +124,49 @@
       }
     }
   }
-  .divider {
-    width: 1px;
-    background-color: $divider-color;
+}
+.content-inner {
+  width: 100%;
+
+  .navigation {
+    position: relative;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    .nav-items {
+      z-index: 5;
+      display: flex;
+      .item {
+        font-size: 1.125rem;
+        outline: none;
+        cursor: pointer;
+        width: 200px;
+        height: 40px;
+        padding: 5px;
+        font-weight: 500;
+        display: flex;
+        justify-content: center;
+        &:hover {
+          z-index: 2;
+          border-bottom: 3px solid #e4e4e4;
+        }
+      }
+      .active {
+        transition: 0.1s ease-in-out;
+        border-bottom: 3px solid $main-color !important;
+      }
+    }
+    .nav-divider {
+      z-index: 1;
+      width: 100%;
+      position: absolute;
+      height: 3px;
+      background: #f6f6f6;
+    }
+  }
+
+  .gap {
+    padding-left: 50px;
   }
 }
