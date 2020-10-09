@@ -5,8 +5,8 @@ import { ServicesComponent } from './services/services.component';
 import { ProductsComponent } from './products/products.component';
 
 const childrenRoutes: Routes = [
-  {path: '', component: ServicesComponent},
-  {path: 'products', component: ProductsComponent},
+  {path: '', component: ProductsComponent},
+  {path: 'services', component: ServicesComponent},
 ];
 
 const routes: Routes = [

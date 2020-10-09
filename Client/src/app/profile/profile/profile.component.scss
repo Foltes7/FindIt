@@ -4,8 +4,8 @@
   height: 100vh;
   display: flex;
   .profile {
-    width: 15%;
-    min-width: 250px;
+    width: 20%;
+    min-width: 270px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -85,6 +85,41 @@
       flex-direction: column;
       app-clickable {
         margin-top: 15px;
+      }
+    }
+    .additional-info {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      .site {
+        margin-top: 15px;
+        display: flex;
+        align-items: center;
+        .icon {
+          height: 100%;
+          width: 40px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        p {
+          margin-left: 16px;
+        }
+      }
+      .location {
+        margin-top: 15px;
+        display: flex;
+        align-items: center;
+        .icon {
+          height: 100%;
+          width: 40px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        p {
+          margin-left: 13px;
+        }
       }
     }
   }
