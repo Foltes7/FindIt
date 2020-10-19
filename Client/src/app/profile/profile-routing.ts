@@ -1,7 +1,7 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 import { ProfileComponent } from './profile/profile.component';
-import { ThingsComponent } from './things/things.component';
+import { ThingsComponent } from './thingsPage/things/things.component';
 
 const childrenRoutes: Routes = [
   {path: 'things', component: ThingsComponent},
