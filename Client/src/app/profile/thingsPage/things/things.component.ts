@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UnsplashService } from 'src/app/shared/unsplash.service';
+import { Thing } from '../models/thing';
 
 @Component({
   selector: 'app-things',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ThingsComponent implements OnInit {
 
-  constructor() { }
+  things: Thing[] = [];
+  loaded = false;
+  constructor(private unplashService: UnsplashService) { }
 
   ngOnInit(): void {
+    this.unplashService.getPost()
+    .subscribe(x => {
+      this.things = x;
+      this.loaded = true;
+    });
   }
 
 }

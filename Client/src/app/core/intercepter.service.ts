@@ -10,12 +10,16 @@ export class IntercepterService {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    const token =  '';
-    request = request.clone({
-      setHeaders: {
-        Authorization: `Bearer ${token}`
-      }
-    });
+    if (!request.url.includes('api.unsplash.com'))
+    {
+      const token =  '';
+      request = request.clone({
+        setHeaders: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+    }
+
 
     return next.handle(request).pipe(
       map((event: HttpEvent<any>) => {

@@ -1,1 +1,52 @@
-<p>thing works!</p>
+<div class="content">
+    <div class="photo">
+        <img [src]="thing.photo" />
+    </div>
+    <div class="info">
+        <div class="text">
+            <div class="title">
+                <p>{{thing.titleLong}}</p>
+            </div>
+            <div class="description">
+                <p>{{thing.titleLong}}</p>
+            </div>
+        </div>
+        <div class="additional-info">
+            <div class="date">
+                <p>{{thing?.date | date}}</p>
+            </div>
+            <div class="additional">
+                <div class="viewed position">
+                    <i class="icon-eye_view"></i>
+                    <p>{{thing.counterView | postView}}</p>
+                </div>
+                <div class="liked position">
+                    <i class="icon-like"></i>
+                    <p>{{thing.counterLike | postView}}</p>
+                </div>
+                <div class="comments position">
+                    <i class="icon-comments"></i>
+                    <p>{{thing.counterMesagges | postView}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="buttons-container">
+            <div class="messages position">
+                <i class="icon-comments"></i>
+                <p>comments</p>
+            </div>
+            <div class="like position">
+                <i class="icon-like"></i>
+                <p>like</p>
+            </div>
+            <div class="save position">
+                <i class="icon-label"></i>
+                <p>save</p>
+            </div>
+            <div class="contact position">
+                <i class="icon-contact"></i>
+                <p>contact</p>
+            </div>
+        </div>
+    </div>
+</div>

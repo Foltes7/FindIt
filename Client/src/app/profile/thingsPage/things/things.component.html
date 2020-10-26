@@ -1,3 +1,6 @@
-<div class="things">
+<div *ngIf="!loaded" class="things-spinner">
     <app-spinner></app-spinner>
+</div>
+<div class="things-container">
+    <app-thing *ngFor="let item of things" [thing]="item"></app-thing>
 </div>
