@@ -3,13 +3,13 @@ import {NgModule} from '@angular/core';
 import { ProfileComponent } from './profile/profile.component';
 import { ThingsComponent } from './thingsPage/things/things.component';
 
-const childrenRoutes: Routes = [
+const childrenProfile: Routes = [
   {path: 'things', component: ThingsComponent},
 ];
 
 const routes: Routes = [
   { path: ':id', redirectTo: '/profile/:id/things', pathMatch: 'full' },
-  { path: ':id', component: ProfileComponent, children: childrenRoutes}
+  { path: ':id', component: ProfileComponent, children: childrenProfile}
 ];
 
 @NgModule({

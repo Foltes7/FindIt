@@ -22,7 +22,7 @@
             <p>0 followers</p>
             <p>12.2k following</p>
             <app-clickable *ngIf="!followed && !admin" [height]="'34px'" [width]="'100%'" [text]="'Follow'"
-                [textColor]="'#10a1ff'" [borderColor]="'#10a1ff'">
+                [borderColor]="'#d5d5d5'">
             </app-clickable>
             <app-clickable *ngIf="followed && !admin" [height]="'34px'" [width]="'100%'" [text]="'Unfollow'"
                 [borderColor]="'#d5d5d5'">
@@ -56,9 +56,7 @@
         <div *ngIf="admin" class="admin-buttons">
             <app-clickable [height]="'34px'" [width]="'100%'" [text]="'Edit profile'" [borderColor]="'#d5d5d5'">
             </app-clickable>
-            <app-clickable [height]="'34px'" [width]="'100%'" [text]="'New service'" [borderColor]="'#d5d5d5'">
-            </app-clickable>
-            <app-clickable [height]="'34px'" [width]="'100%'" [text]="'New product'" [borderColor]="'#d5d5d5'">
+            <app-clickable [height]="'34px'" [width]="'100%'" [text]="'New thing'" [borderColor]="'#d5d5d5'">
             </app-clickable>
         </div>
     </div>
