@@ -3,7 +3,7 @@
         <img [src]="thing.photo" />
     </div>
     <div class="info">
-        <div class="text" routerLink="5">
+        <div class="text" routerLink="5/overview">
             <div class="title">
                 <p>{{thing.titleLong}}</p>
             </div>
@@ -16,7 +16,7 @@
                 <p>{{thing?.date | date}}</p>
             </div>
             <div class="additional">
-                <div class="viewed position">
+                <div class="viewed position" routerLink="5/overview">
                     <i class="icon-eye_view"></i>
                     <p>{{thing.counterView | postView}}</p>
                 </div>
@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="buttons-container">
-            <div class="messages position">
+            <div class="messages position" routerLink="5/comments">
                 <i class="icon-comments"></i>
                 <p>comments</p>
             </div>

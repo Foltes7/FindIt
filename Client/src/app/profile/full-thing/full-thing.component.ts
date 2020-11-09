@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FullThingComponent implements OnInit {
 
+  adminView = false;
   constructor() { }
 
   ngOnInit(): void {
