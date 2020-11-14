@@ -1,0 +1,261 @@
+@import "variables";
+
+.container {
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+
+    .width-content {
+        width: 560px;
+    }
+
+    .main-info {
+        display: flex;
+
+        .photo {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            img {
+                border-radius: 50%;
+                height: 160px;
+                object-fit: cover;
+            }
+
+            .default {
+                border-radius: 0;
+                height: 60px;
+                object-fit: cover;
+            }
+        }
+
+        .without-photo-border {
+            border: 1px solid #a8a8a8;
+        }
+
+        .info {
+            width: calc(100% - 160px);
+            padding-left: 40px;
+
+            .name {
+                font-weight: bold;
+                font-size: 1.375rem;
+            }
+
+            .username {
+                margin-top: 10px;
+                font-size: 1.125rem;
+            }
+
+            .description {
+                margin-top: 15px;
+            }
+        }
+    }
+
+    .follow {
+        padding-left: 200px;
+        margin-top: 10px;
+        display: flex;
+
+        .followers {
+            width: 150px;
+        }
+
+        .following {
+            width: 150px;
+        }
+
+        p {
+            cursor: pointer;
+
+            &:hover {
+                font-weight: 500;
+            }
+        }
+    }
+
+    .buttons {
+        margin-top: 20px;
+        display: flex;
+
+        .edit-section {
+            display: flex;
+            justify-content: center;
+            width: 160px;
+
+            .edit-profile {
+                width: 120px;
+                height: 32px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border: 1px solid $button-border;
+                border-radius: 3px;
+                cursor: pointer;
+
+                p {
+                    font-size: 0.875rem;
+                    font-weight: bold;
+                    color: $active-header-icon-color;
+                }
+            }
+        }
+
+        .user-section {
+            display: flex;
+            justify-content: flex-end;
+            width: calc(100% - 160px);
+
+            .contact {
+                margin-right: 30px;
+                width: 120px;
+                height: 32px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border: 1px solid $button-border;
+                border-radius: 3px;
+                cursor: pointer;
+
+                p {
+                    font-size: 0.875rem;
+                    font-weight: bold;
+                    color: $active-header-icon-color;
+                }
+
+                i {
+                    margin-left: 8px;
+                    margin-bottom: 4px;
+                }
+
+                i::before {
+                    font-size: 0.75rem;
+                    color: $active-header-icon-color;
+                }
+            }
+
+            .follow-button {
+                width: 120px;
+                height: 32px;
+                background-color: $blue-color;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 3px;
+                cursor: pointer;
+
+                p {
+                    font-size: 0.875rem;
+                    font-weight: bold;
+                    color: white;
+                }
+
+                i {
+                    margin-left: 8px;
+                    margin-bottom: 4px;
+                }
+
+                i::before {
+                    font-size: 0.75rem;
+                    color: white;
+                }
+            }
+            .unfollow-button {
+                width: 120px;
+                height: 32px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border: 1px solid $button-border;
+                border-radius: 3px;
+                cursor: pointer;
+
+                p {
+                    font-size: 0.875rem;
+                    font-weight: bold;
+                    color: $active-header-icon-color;
+                }
+            }
+        }
+    }
+
+    .divider {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        height: 2px;
+        background: $bottom-color-line;
+    }
+
+    .business-container {
+        .button-business {
+            margin-right: 30px;
+            width: 200px;
+            height: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid $button-border;
+            border-radius: 3px;
+            cursor: pointer;
+
+            p {
+                font-size: 0.875rem;
+                font-weight: bold;
+                color: $active-header-icon-color;
+            }
+        }
+    }
+
+    .additional-info {
+        .location {
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+
+            .icon {
+                height: 100%;
+                width: 30px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                i:before{
+                    color: $active-header-icon-color;
+                }
+            }
+
+            p {
+                margin-left: 13px;
+
+            }
+        }
+
+        .site {
+            display: flex;
+            align-items: center;
+
+            .icon {
+                height: 100%;
+                width: 30px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                i:before{
+                    color: $active-header-icon-color;
+                }
+            }
+
+            p {
+                margin-left: 13px;
+            }
+        }
+    }
+}
