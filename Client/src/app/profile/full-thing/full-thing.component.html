@@ -14,9 +14,9 @@
             </div>
             <div class="buttons">
                 <div *ngIf="!adminView" class="user-view">
-                    <app-clickable class="mr-help" [height]="'28px'" [width]="'116px'" [text]="'Save'"
-                        [borderColor]="'#DEDEDE'">
-                    </app-clickable>
+                    <div class="button-save mr-help">
+                        <p>Save</p>
+                    </div>
                     <div class="button-contact">Contact</div>
                 </div>
                 <div *ngIf="adminView" class="admin-view">

@@ -3,13 +3,13 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: calc(100vh - 115px);
+    height: 100%;
 }
 .things-container{
+  height: 100%;
   display: flex;
   flex-wrap: wrap;
-  height: calc(100vh - 115px);
-  padding-right: 20px;
+  justify-content: center;
   overflow-x: hidden;
   overflow-y: scroll;
 }
