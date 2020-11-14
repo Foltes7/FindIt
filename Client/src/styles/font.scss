@@ -1,3 +1,5 @@
+@import "variables";
+
 @font-face {
   font-family: "findIt";
   src: url("/assets/icons/findIt.eot") format("embedded-opentype"),
@@ -27,31 +29,31 @@
 
 .icon-home:before {
   content: "\e900";
-  color: #fff;
+  color: $default-header-icon-color;
   font-size: 1.5rem;
 }
 
 .icon-label:before {
   content: "\e901";
-  color: #fff;
+  color: $default-header-icon-color;
   font-size: 1.5rem;
 }
 
 .icon-message:before {
   content: "\e902";
-  color: #fff;
+  color: $default-header-icon-color;
   font-size: 1.5rem;
 }
 
 .icon-search:before {
   content: "\e903";
-  color: #fff;
+  color: $default-header-icon-color;
   font-size: 1.5rem;
 }
 
 .icon-notification:before {
   content: "\e904";
-  color: #fff;
+  color: $default-header-icon-color;
   font-size: 1.375rem;
 }
 
