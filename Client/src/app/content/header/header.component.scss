@@ -24,8 +24,12 @@ header {
       display: flex;
       justify-content: center;
       align-items: center;
+      cursor: pointer;
       &:hover {
-        cursor: pointer;
+        i::before{
+          color: $active-header-icon-color;
+        }
+
       }
       .counter-container {
         position: absolute;
@@ -34,7 +38,7 @@ header {
         border-radius: 50%;
         width: 8px;
         height: 8px;
-        background-color: #ffcaac;
+        background-color: $blue-color;
       }
     }
   }
