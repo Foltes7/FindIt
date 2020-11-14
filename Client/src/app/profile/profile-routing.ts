@@ -6,6 +6,7 @@ import { FullThingComponent } from './full-thing/full-thing.component';
 import { OverviewComponent } from './full-thing-components/overview/overview.component';
 import { CommentsComponent } from './full-thing-components/comments/comments.component';
 import { PhotosComponent } from './full-thing-components/photos/photos.component';
+import { ProfileInProfileComponent } from './profile-in-profile/profile-in-profile.component';
 
 const childrenThing: Routes = [
   { path: 'overview', component: OverviewComponent },
@@ -16,11 +17,11 @@ const childrenThing: Routes = [
 
 const childrenProfile: Routes = [
   { path: 'things', component: ThingsComponent },
-  { path: 'things/:id', component: FullThingComponent, children: childrenThing }
+  { path: 'things/:id', component: FullThingComponent, children: childrenThing },
+  { path: '', component: ProfileInProfileComponent}
 ];
 
 const routes: Routes = [
-  { path: ':id', redirectTo: '/profile/:id/things', pathMatch: 'full' },
   { path: ':id', component: ProfileComponent, children: childrenProfile }
 ];
 

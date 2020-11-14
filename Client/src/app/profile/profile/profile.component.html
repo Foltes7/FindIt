@@ -1,5 +1,21 @@
 <div class="content">
-    <div class="profile">
+    <div class="second-menu">
+        <div class="navigation">
+            <div class="nav-item" routerLink="./" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <p>Profile</p>
+                <div class="item-line"></div>
+            </div>
+            <div class="nav-item" routerLink="things" routerLinkActive="active">
+                <p>Things</p>
+                <div class="item-line"></div>
+            </div>
+        </div>
+        <div class="line"></div>
+    </div>
+    <div class="content-profile">
+        <router-outlet></router-outlet>
+    </div>
+    <div *ngIf="false" class="profile">
         <div class="photo" [ngClass]="{'without-photo-border': !user?.profile_image.large}">
             <img *ngIf="user?.profile_image.large" [src]="user?.profile_image.large" />
             <img class="default" *ngIf="!user?.profile_image.large" src="assets/images/default_user.svg">
@@ -60,7 +76,7 @@
             </app-clickable>
         </div>
     </div>
-    <div class="content-inner">
+    <div *ngIf="false" class="content-inner">
         <div class="navigation">
             <div class="nav-items gap-navigation">
                 <div class="item" routerLink="things" routerLinkActive="active">
