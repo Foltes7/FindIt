@@ -1,10 +1,11 @@
 ﻿
 
+using Common.Database.helpers;
+
 namespace Common.Database.models
 {
-    public class User
+    public class User : BaseEntity
     {
-        public int Id { set; get; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }

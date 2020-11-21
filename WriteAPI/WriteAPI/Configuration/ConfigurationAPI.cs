@@ -1,4 +1,6 @@
 ﻿using Context;
+using Context.GenericRepository;
+using Context.Repositories;
 using JWT;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -46,6 +48,9 @@ namespace WriteAPI.ConfigurationAPI
         {
             string writeConnection = Configuration.GetSection("Database").Value;
             services.AddDbContext<DatabaseContext>(options => options.UseNpgsql(writeConnection));
+
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IUserRepository, UserRepository>();
         }
     }
 }
