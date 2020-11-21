@@ -25,6 +25,15 @@ namespace WriteAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyMethod()
+                       .AllowAnyHeader()
+                       .AllowCredentials()
+                       .WithOrigins("http://localhost:4200", "http://localhost:8080");
+            }));
+
+            services.DataBase(Configuration);
             services.JWT(Configuration);
             services.BL(Configuration);
 
@@ -40,14 +49,21 @@ namespace WriteAPI
         {
             if (env.IsDevelopment())
             {
+                System.Console.WriteLine("Development");
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WriteAPI v1"));
             }
 
+            if (env.IsProduction())
+            {
+                System.Console.WriteLine("Production");
+            }
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors("MyPolicy");
 
             app.UseAuthentication();
             app.UseAuthorization();

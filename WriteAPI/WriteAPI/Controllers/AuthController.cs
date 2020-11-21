@@ -49,6 +49,17 @@ namespace WriteAPI.Controllers
             });
         }
 
+        [AllowAnonymous]
+        [HttpPost("registration")]
+        public ActionResult Registration(RegistrationCommand command)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
 
         [HttpPost("logout")]
         [Authorize]

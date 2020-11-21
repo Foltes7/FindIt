@@ -1,5 +1,7 @@
-﻿using JWT;
+﻿using Context;
+using JWT;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -38,6 +40,12 @@ namespace WriteAPI.ConfigurationAPI
         public static void BL(this IServiceCollection services, IConfiguration Configuration)
         {
             services.AddSingleton<IJwtAuthManager, JwtAuthManager>();
+        }
+
+        public static void DataBase(this IServiceCollection services, IConfiguration Configuration)
+        {
+            string writeConnection = Configuration.GetSection("Database").Value;
+            services.AddDbContext<DatabaseContext>(options => options.UseNpgsql(writeConnection));
         }
     }
 }
