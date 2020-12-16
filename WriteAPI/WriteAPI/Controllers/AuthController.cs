@@ -38,7 +38,6 @@ namespace WriteAPI.Controllers
             {
                 new Claim(ClaimTypes.Name, request.UserName),
             };
-
             var jwtResult = _jwtAuthManager.GenerateTokens(request.UserName, claims, DateTime.Now);
 
             return Ok(new LoginResult
