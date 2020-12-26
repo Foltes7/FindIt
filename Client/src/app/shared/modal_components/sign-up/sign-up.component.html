@@ -1,2 +1,22 @@
 <app-modal-title [title]="data.title"></app-modal-title>
-<p>sign-up works!</p>
+<form [formGroup]="mainForm">
+    <div class="form-group">
+        <label>Username</label>
+        <input class="form-control" name="userName" formControlName="userName" />
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <input class="form-control" name="email" formControlName="email" />
+    </div>
+    <div class="form-group">
+        <label>Password</label>
+        <input class="form-control" type="password" name="password" formControlName="password" />
+    </div>
+    <div class="form-group">
+        <label>Cofirm password</label>
+        <input class="form-control" type="password" name="password" formControlName="confirmPassword" />
+    </div>
+    <div class="form-group">
+        <button>Отправить</button>
+    </div>
+</form>

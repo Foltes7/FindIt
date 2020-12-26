@@ -1,4 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogData } from '../../models/DialogData';
 
@@ -10,6 +11,13 @@ import { DialogData } from '../../models/DialogData';
 export class SignUPComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+
+  public mainForm: FormGroup = new FormGroup({
+    userName: new FormControl(''),
+    password: new FormControl(''),
+    confirmPassword: new FormControl(''),
+    email: new FormControl(''),
+  });
 
   ngOnInit(): void {
   }

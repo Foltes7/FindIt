@@ -8,15 +8,18 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DialogService } from './services/dialog.service';
 import { ModalTitleComponent } from './modal_components/modal-title/modal-title.component';
 
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [SpinnerComponent, PostViewPipe, SignUPComponent, SignINComponent, ModalTitleComponent],
   imports: [
     CommonModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule, ReactiveFormsModule
   ],
-  exports: [SpinnerComponent, PostViewPipe],
+  exports: [SpinnerComponent, PostViewPipe, FormsModule, ReactiveFormsModule],
   providers: [DialogService]
 })
 export class SharedModule { }
