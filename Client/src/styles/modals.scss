@@ -1,0 +1,9 @@
+
+.custom-dialog-class {
+    max-width: 90vw !important;
+    mat-dialog-container {
+      max-width: 90vw;
+      padding: 0;
+      border-radius: 5px;
+    }
+  }

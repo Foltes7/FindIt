@@ -6,11 +6,12 @@ import { SignUPComponent } from './modal_components/sign-up/sign-up.component';
 import { SignINComponent } from './modal_components/sign-in/sign-in.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogService } from './services/dialog.service';
+import { ModalTitleComponent } from './modal_components/modal-title/modal-title.component';
 
 
 
 @NgModule({
-  declarations: [SpinnerComponent, PostViewPipe, SignUPComponent, SignINComponent],
+  declarations: [SpinnerComponent, PostViewPipe, SignUPComponent, SignINComponent, ModalTitleComponent],
   imports: [
     CommonModule,
     MatDialogModule
