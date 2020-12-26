@@ -19,7 +19,7 @@ namespace Context.GenericRepository
             entities = context.Set<T>();
         }
 
-        public async Task<T> GetById(int id) => await entities.FirstOrDefaultAsync(z => z.Id == id);
+        public async Task<T> GetById(Guid id) => await entities.FirstOrDefaultAsync(z => z.Id == id);
 
         public async Task<T> FirstOrDefault(Expression<Func<T, bool>> predicate)
             => await entities.FirstOrDefaultAsync(predicate);

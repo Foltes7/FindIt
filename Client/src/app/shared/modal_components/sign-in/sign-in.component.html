@@ -1,2 +1,34 @@
 <app-modal-title [title]="data.title"></app-modal-title>
-<p>sign-in works!</p>
+<form [formGroup]="myForm" novalidate (ngSubmit)="submit()">
+    <div class="form-group">
+        <label>Имя</label>
+        <input class="form-control" name="name" formControlName="userName" />
+          
+        <div class="alert alert-danger"
+            *ngIf="myForm.controls['userName'].invalid && myForm.controls['userName'].touched">
+            Не указано имя
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <input class="form-control" name="email" formControlName="userEmail" />
+          
+        <div class="alert alert-danger"
+            *ngIf="myForm.controls['userEmail'].invalid && myForm.controls['userEmail'].touched">
+            Некорректный email
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Телефон</label>
+        <input class="form-control" name="phone" formControlName="userPhone" />
+        <div class="alert alert-danger"
+            *ngIf="myForm.controls['userPhone'].invalid && myForm.controls['userPhone'].touched">
+            Некорректный номер телефона
+        </div>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-default" [disabled]="myForm.invalid">
+            Отправить
+        </button>
+    </div>
+</form>

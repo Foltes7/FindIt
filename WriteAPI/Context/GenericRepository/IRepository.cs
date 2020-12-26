@@ -10,7 +10,7 @@ namespace Context.GenericRepository
 {
     public interface IRepository<T> where T : BaseEntity
     {
-        Task<T> GetById(int id);
+        Task<T> GetById(Guid id);
         Task<T> FirstOrDefault(Expression<Func<T, bool>> predicate);
 
         Task Add(T entity);

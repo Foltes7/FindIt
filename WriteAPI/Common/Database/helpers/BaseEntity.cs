@@ -8,6 +8,6 @@ namespace Common.Database.helpers
 {
     public class BaseEntity
     {
-        public int Id { set; get; }
+        public Guid Id { set; get; }
     }
 }
