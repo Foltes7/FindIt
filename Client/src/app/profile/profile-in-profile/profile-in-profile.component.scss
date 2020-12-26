@@ -258,4 +258,24 @@
             }
         }
     }
+    .logout{
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        .button{
+            width: 120px;
+            height: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid $button-border;
+            border-radius: 3px;
+            cursor: pointer;
+            p {
+                font-size: 0.875rem;
+                font-weight: bold;
+                color: $active-header-icon-color;
+            }
+        }
+    }
 }
