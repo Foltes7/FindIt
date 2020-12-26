@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 
-namespace Domain.auth
+namespace Domain.Commands.auth
 {
     public class LoginCommand
     {

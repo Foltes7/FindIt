@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.auth
+namespace Domain.Commands.auth
 {
     public class RegistrationCommand
     {

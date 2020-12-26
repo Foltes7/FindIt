@@ -1,5 +1,5 @@
 ﻿using Common.DTO.Auth;
-using Domain.auth;
+using Domain.Commands.auth;
 using JWT;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
