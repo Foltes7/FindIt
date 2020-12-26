@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using WriteAPI.Configuration;
 using WriteAPI.ConfigurationAPI;
 
 namespace WriteAPI
@@ -39,7 +40,7 @@ namespace WriteAPI
             services.JWT(Configuration);
             services.BL(Configuration);
 
-            services.AddControllers()
+            services.AddControllers(opt => opt.Filters.Add(typeof(ValidationFilter)))
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginCommandValidator>())
                 .AddNewtonsoftJson();
 
@@ -64,6 +65,8 @@ namespace WriteAPI
             {
                 System.Console.WriteLine("Production");
             }
+
+            app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseHttpsRedirection();
 
