@@ -27,10 +27,6 @@ namespace WriteAPI.Controllers
         [HttpPost("login")]
         public ActionResult Login([FromBody] LoginCommand request)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
 
             // TODO VALIDATE FROM DB
 
@@ -52,11 +48,6 @@ namespace WriteAPI.Controllers
         [HttpPost("registration")]
         public ActionResult Registration(RegistrationCommand command)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-
             return Ok();
         }
 
