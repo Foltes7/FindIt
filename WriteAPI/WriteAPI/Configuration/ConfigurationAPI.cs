@@ -1,8 +1,9 @@
-﻿using Context;
+﻿using Common.Database.models;
+using Context;
 using Context.GenericRepository;
-using Context.Repositories;
 using JWT;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -49,8 +50,11 @@ namespace WriteAPI.ConfigurationAPI
             string writeConnection = Configuration.GetSection("Database").Value;
             services.AddDbContext<DatabaseContext>(options => options.UseNpgsql(writeConnection));
 
-            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddIdentity<User, Role>()
+                    .AddEntityFrameworkStores<DatabaseContext>()
+                    .AddDefaultTokenProviders();
+
+            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
         }
     }
 }

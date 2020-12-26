@@ -1,14 +1,10 @@
-﻿
-
-using Common.Database.helpers;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 
 namespace Common.Database.models
 {
-    public class User : BaseEntity
+    public class User : IdentityUser<Guid>
     {
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public string Email { get; set; }
         public string PhotoId { set; get; }
     }
 }
