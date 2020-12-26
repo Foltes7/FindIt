@@ -24,6 +24,23 @@ header{
             color: $active-header-icon-color;
         }
     }
+
+    .button-signin{
+        margin-right: 45px;
+        width: 120px;
+        height: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid $button-border;
+        border-radius: 3px;
+        cursor: pointer;
+        p {
+            font-size: 0.875rem;
+            font-weight: bold;
+            color: $active-header-icon-color;
+        }
+    }
     .line{
         z-index: 0;
         position: absolute;
