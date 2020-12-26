@@ -19,12 +19,13 @@ export class AboutComponent implements OnInit {
   openSignUp(): void
   {
     const config: MatDialogConfig =  {
-      width: '450px',
+      width: '500px',
       maxHeight: '100%',
       data: {
         title: 'Sign Up'
       },
-      panelClass: 'custom-dialog-class'
+      panelClass: 'custom-dialog-class',
+      // hasBackdrop: false
     };
     this.dialogService.openDialog(SignUPComponent, config);
   }
@@ -32,12 +33,13 @@ export class AboutComponent implements OnInit {
   openSignIn(): void
   {
     const config: MatDialogConfig =  {
-      width: '450px',
+      width: '500px',
       maxHeight: '100%',
       data: {
         title: 'Sign In'
       },
-      panelClass: 'custom-dialog-class'
+      panelClass: 'custom-dialog-class',
+      hasBackdrop: false
     };
     this.dialogService.openDialog(SignINComponent, config);
   }

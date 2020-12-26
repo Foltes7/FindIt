@@ -1,22 +1,61 @@
 <app-modal-title [title]="data.title"></app-modal-title>
-<form [formGroup]="mainForm">
-    <div class="form-group">
-        <label>Username</label>
-        <input class="form-control" name="userName" formControlName="userName" />
-    </div>
-    <div class="form-group">
-        <label>Email</label>
-        <input class="form-control" name="email" formControlName="email" />
-    </div>
-    <div class="form-group">
-        <label>Password</label>
-        <input class="form-control" type="password" name="password" formControlName="password" />
-    </div>
-    <div class="form-group">
-        <label>Cofirm password</label>
-        <input class="form-control" type="password" name="password" formControlName="confirmPassword" />
-    </div>
-    <div class="form-group">
-        <button>Отправить</button>
-    </div>
-</form>
+<div class="container">
+    <form [formGroup]="mainForm" class="form">
+        <div class="form-group">
+            <label>Username</label>
+            <div class="input-value">
+                <input class="default-input" placeholder="Username" name="userName" formControlName="userName" />
+                <div class="validator">
+                    <div class="dot"></div>
+                </div>
+                <div class="message">
+                    <p>message</p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <div class="input-value">
+                <input class="default-input" placeholder="Email" name="email" formControlName="email" />
+                <div class="validator">
+                    <div class="dot"></div>
+                </div>
+                <div class="message">
+                    <p>message</p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <div class="input-value">
+                <input class="default-input" placeholder="Password" type="password" name="password"
+                    formControlName="password" />
+                <div class="validator">
+                    <div class="dot"></div>
+                </div>
+                <div class="message">
+                    <p>message</p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Confirm password</label>
+            <div class="input-value">
+                <input class="default-input" placeholder="Confirm password" type="password" name="password"
+                formControlName="confirmPassword" />
+                <div class="validator">
+                    <div class="dot"></div>
+                </div>
+                <div class="message">
+                    <p>message</p>
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="form-group center">
+            <button  [disabled]="false" (click)="signUp()" class="button">
+                <p>Sign Up</p>
+            </button>
+        </div>
+    </form>
+</div>
