@@ -9,7 +9,7 @@ import { UnsplashService } from 'src/app/shared/unsplash.service';
 export class ProfileInProfileComponent implements OnInit {
 
   followed = false;
-  admin = false;
+  admin = true;
   user: any;
   constructor(private unsplashService: UnsplashService) { }
 
