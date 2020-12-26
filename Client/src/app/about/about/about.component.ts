@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogConfig } from '@angular/material/dialog';
+import { SignINComponent } from 'src/app/shared/modal_components/sign-in/sign-in.component';
+import { SignUPComponent } from 'src/app/shared/modal_components/sign-up/sign-up.component';
+import { DialogService } from 'src/app/shared/services/dialog.service';
 
 @Component({
   selector: 'app-about',
@@ -7,9 +11,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialogService: DialogService) { }
 
   ngOnInit(): void {
   }
 
+  openSignUp(): void
+  {
+    const config: MatDialogConfig =  {
+      width: '450px',
+      maxHeight: '100%',
+      data: {
+        title: 'Sign Up'
+      },
+    };
+    this.dialogService.openDialog(SignUPComponent, config);
+  }
+
+  openSignIn(): void
+  {
+    const config: MatDialogConfig =  {
+      width: '450px',
+      maxHeight: '100%',
+      data: {
+        title: 'Sign In'
+      },
+    };
+    this.dialogService.openDialog(SignINComponent, config);
+  }
 }
