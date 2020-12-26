@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Context", "Context\Context.csproj", "{D753715B-7AB7-44F6-887C-7FA2DCB2DD47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BI", "BI\BI.csproj", "{F56E8FE2-A81F-49A8-A2A9-5C11492E5F3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BI", "BI\BI.csproj", "{F56E8FE2-A81F-49A8-A2A9-5C11492E5F3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMapperLib", "AutoMapperLib\AutoMapperLib.csproj", "{C0FEEA43-0FAB-46F2-9922-71C9751F8FB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoMapperLib", "AutoMapperLib\AutoMapperLib.csproj", "{C0FEEA43-0FAB-46F2-9922-71C9751F8FB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validators", "Validators\Validators.csproj", "{E6F97BAA-F4E2-49B6-88C0-BFED3DB3CF62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{C0FEEA43-0FAB-46F2-9922-71C9751F8FB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0FEEA43-0FAB-46F2-9922-71C9751F8FB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0FEEA43-0FAB-46F2-9922-71C9751F8FB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6F97BAA-F4E2-49B6-88C0-BFED3DB3CF62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6F97BAA-F4E2-49B6-88C0-BFED3DB3CF62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6F97BAA-F4E2-49B6-88C0-BFED3DB3CF62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6F97BAA-F4E2-49B6-88C0-BFED3DB3CF62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

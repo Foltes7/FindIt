@@ -1,9 +1,5 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FluentValidation;
+using Newtonsoft.Json;
 
 namespace Domain.Commands.auth
 {
@@ -11,5 +7,13 @@ namespace Domain.Commands.auth
     {
         [JsonProperty("refreshToken")]
         public string RefreshToken { get; set; }
+    }
+
+    public class RefreshTokenCommandValidator : AbstractValidator<RefreshTokenCommand>
+    {
+        public RefreshTokenCommandValidator()
+        {
+            RuleFor(x => x.RefreshToken).NotEmpty();
+        }
     }
 }

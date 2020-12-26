@@ -1,3 +1,5 @@
+using Domain.Commands.auth;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -37,7 +39,10 @@ namespace WriteAPI
             services.JWT(Configuration);
             services.BL(Configuration);
 
-            services.AddControllers().AddNewtonsoftJson();
+            services.AddControllers()
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginCommandValidator>())
+                .AddNewtonsoftJson();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WriteAPI", Version = "v1" });

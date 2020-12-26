@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using FluentValidation;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,20 +11,27 @@ namespace Domain.Commands.auth
 {
     public class RegistrationCommand
     {
-        [Required]
         [JsonProperty("username")]
         public string UserName { get; set; }
 
-        [Required]
         [JsonProperty("password")]
         public string Password { get; set; }
 
-        [Required]
         [JsonProperty("password_confirm")]
         public string ConfirmPassword { get; set; }
 
-        [Required]
         [JsonProperty("email")]
         public string Email { get; set; }
+    }
+
+    public class RegistrationCommandValidator : AbstractValidator<RegistrationCommand>
+    {
+        public RegistrationCommandValidator()
+        {
+            RuleFor(x => x.UserName).NotEmpty();
+            RuleFor(x => x.Password).NotEmpty().Equal(z => z.ConfirmPassword);
+            RuleFor(x => x.ConfirmPassword).NotEmpty();
+            RuleFor(x => x.Email).NotEmpty().EmailAddress();
+        }
     }
 }
