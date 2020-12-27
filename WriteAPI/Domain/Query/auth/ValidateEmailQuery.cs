@@ -12,7 +12,7 @@ namespace Domain.Query.auth
     {
         public ValidateEmailQueryValidator()
         {
-            RuleFor(x => x.Email).Length(3, 100).EmailAddress();
+            RuleFor(x => x.Email).Length(4, 100).EmailAddress();
         }
     }
 }

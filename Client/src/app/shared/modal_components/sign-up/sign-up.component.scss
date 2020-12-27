@@ -80,6 +80,15 @@
                 font-weight: bold;
                 color: white;
             }
+            &:disabled{
+                cursor:default ;
+                background-color:#f2f2f2;
+                border: 1px solid #f2f2f2;
+                p{
+                    color: #c5c5c5  
+                }       
+            }
         }
+        
     }
 }

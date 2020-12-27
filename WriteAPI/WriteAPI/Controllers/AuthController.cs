@@ -128,7 +128,7 @@ namespace WriteAPI.Controllers
         public async Task<IActionResult> ValidateUserName(ValidateUserNameQuery query)
         {
             var user = await this._userManager.FindByNameAsync(query.Username);
-            if (user != null)
+            if (user == null)
             {
                 return Ok(new { valid = true });
             }

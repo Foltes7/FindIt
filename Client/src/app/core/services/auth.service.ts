@@ -44,6 +44,6 @@ export class AuthService {
     const obj = {
       username,
     };
-    return this.httpClient.post<ValidateResponse>(environment.writeAPI + '/api/Auth/validate//api/Auth/validate/username', obj);
+    return this.httpClient.post<ValidateResponse>(environment.writeAPI + '/api/Auth/validate/username', obj);
   }
 }

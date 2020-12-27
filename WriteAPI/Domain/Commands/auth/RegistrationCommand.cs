@@ -29,7 +29,7 @@ namespace Domain.Commands.auth
         public RegistrationCommandValidator()
         {
             RuleFor(x => x.UserName).NotEmpty();
-            RuleFor(x => x.Password).NotEmpty().Equal(z => z.ConfirmPassword);
+            RuleFor(x => x.Password).NotEmpty().Length(6, 20).Equal(z => z.ConfirmPassword);
             RuleFor(x => x.ConfirmPassword).NotEmpty();
             RuleFor(x => x.Email).NotEmpty().EmailAddress();
         }

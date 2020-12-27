@@ -6,10 +6,12 @@
             <div class="input-value">
                 <input class="default-input" placeholder="Username" name="userName" formControlName="userName" />
                 <div class="validator">
-                    <div class="dot"></div>
+                    <div class="dot" [ngClass]="{ 'red-dot': userName.hasError('username'), 
+                    'green-dot' : userName.valid }"></div>
                 </div>
                 <div class="message">
-                    <p>message</p>
+                    <p *ngIf="userName.hasError('username')">User with same username exist</p>
+                    <p *ngIf="userName.invalid && userName.dirty">Min username length 4</p>
                 </div>
             </div>
         </div>
@@ -18,10 +20,11 @@
             <div class="input-value">
                 <input class="default-input" placeholder="Email" name="email" formControlName="email" />
                 <div class="validator">
-                    <div class="dot"></div>
+                    <div class="dot" [ngClass]="{ 'red-dot': email.invalid && email.dirty, 
+                    'green-dot' : email.valid }"></div>
                 </div>
                 <div class="message">
-                    <p>message</p>
+                    <p *ngIf="email.invalid && email.dirty">Invalid email address</p>
                 </div>
             </div>
         </div>
@@ -31,10 +34,11 @@
                 <input class="default-input" placeholder="Password" type="password" name="password"
                     formControlName="password" />
                 <div class="validator">
-                    <div class="dot"></div>
+                    <div class="dot" [ngClass]="{ 'red-dot': password.invalid && password.dirty, 
+                    'green-dot' : password.valid }"></div>
                 </div>
                 <div class="message">
-                    <p>message</p>
+                    <p *ngIf="password.invalid && password.dirty">Min password length 6 max 20</p>
                 </div>
             </div>
         </div>
@@ -44,16 +48,17 @@
                 <input class="default-input" placeholder="Confirm password" type="password" name="password"
                 formControlName="confirmPassword" />
                 <div class="validator">
-                    <div class="dot"></div>
+                    <div class="dot" [ngClass]="{ 'red-dot': confirmPass.invalid && confirmPass.dirty, 
+                    'green-dot' : confirmPass.valid }"></div>
                 </div>
                 <div class="message">
-                    <p>message</p>
+                    <p *ngIf="mainForm.hasError('mismatch') && confirmPass.dirty" >Passwords do not match</p>
                 </div>
             </div>
         </div>
         <div class="divider"></div>
         <div class="form-group center">
-            <button  [disabled]="false" (click)="signUp()" class="button">
+            <button [disabled]="mainForm.invalid" (click)="signUp()" class="button">
                 <p>Sign Up</p>
             </button>
         </div>
