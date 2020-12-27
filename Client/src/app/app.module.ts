@@ -4,6 +4,10 @@ import { AppComponent } from './app.component';
 import { ContentModule } from './content/content.module';
 import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxsModule } from '@ngxs/store';
+import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
+import { UserStore } from './core/userState/user-state';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -13,7 +17,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CoreModule,
     ContentModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxsModule.forRoot([ UserStore], { developmentMode: !environment.production }),
+    NgxsStoragePluginModule.forRoot({
+      key: UserStore
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

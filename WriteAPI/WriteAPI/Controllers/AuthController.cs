@@ -21,31 +21,40 @@ namespace WriteAPI.Controllers
     {
         private readonly IJwtAuthManager _jwtAuthManager;
         private readonly UserManager<User> _userManager;
-        public AuthController(IJwtAuthManager jwtAuthManager, UserManager<User> _userManager)
+        private readonly SignInManager<User> _signInManager;
+        public AuthController(
+            IJwtAuthManager jwtAuthManager, 
+            UserManager<User> _userManager,
+            SignInManager<User> _signInManager
+            )
         {
             _jwtAuthManager = jwtAuthManager;
             this._userManager = _userManager;
+            this._signInManager = _signInManager;
         }
 
         [AllowAnonymous]
         [HttpPost("login")]
-        public ActionResult Login([FromBody] LoginCommand request)
+        public async Task<ActionResult> Login([FromBody] LoginCommand request)
         {
-
-            // TODO VALIDATE FROM DB
-
-            var claims = new[]
+            var user = await _userManager.FindByNameAsync(request.UserName);
+            if(user != null)
             {
-                new Claim(ClaimTypes.Name, request.UserName),
-            };
-            var jwtResult = _jwtAuthManager.GenerateTokens(request.UserName, claims, DateTime.Now);
+                var check = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
+                if (check.Succeeded)
+                {
+                    var claims = new[] { new Claim(ClaimTypes.Name, request.UserName) };
+                    var jwtResult = _jwtAuthManager.GenerateTokens(request.UserName, claims, DateTime.Now);
 
-            return Ok(new LoginResult
-            {
-                UserName = request.UserName,
-                AccessToken = jwtResult.AccessToken,
-                RefreshToken = jwtResult.RefreshToken.TokenString
-            });
+                    return Ok(new LoginResult
+                    {
+                        UserName = request.UserName,
+                        AccessToken = jwtResult.AccessToken,
+                        RefreshToken = jwtResult.RefreshToken.TokenString
+                    });
+                }
+            }
+            return BadRequest();
         }
 
         [AllowAnonymous]
