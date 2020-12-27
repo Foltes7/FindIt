@@ -54,6 +54,16 @@ namespace WriteAPI.ConfigurationAPI
                     .AddEntityFrameworkStores<DatabaseContext>()
                     .AddDefaultTokenProviders();
 
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 0;
+            });
+
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
         }
     }

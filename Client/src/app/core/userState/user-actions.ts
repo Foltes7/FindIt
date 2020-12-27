@@ -2,7 +2,7 @@
 
 export class RegisterUser {
     static type = '[User] Register';
-    constructor(publci ) {}
+    constructor(public username: string, public pass: string, public confirmPassword: string, public email: string ) {}
 }
 
 export class LoginUser {

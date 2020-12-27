@@ -17,7 +17,7 @@ namespace Domain.Commands.auth
         [JsonProperty("password")]
         public string Password { get; set; }
 
-        [JsonProperty("password_confirm")]
+        [JsonProperty("confirmPassword")]
         public string ConfirmPassword { get; set; }
 
         [JsonProperty("email")]
@@ -29,9 +29,9 @@ namespace Domain.Commands.auth
         public RegistrationCommandValidator()
         {
             RuleFor(x => x.UserName).NotEmpty();
-            RuleFor(x => x.Password).NotEmpty().Length(6, 20).Equal(z => z.ConfirmPassword);
-            RuleFor(x => x.ConfirmPassword).NotEmpty();
-            RuleFor(x => x.Email).NotEmpty().EmailAddress();
+            RuleFor(x => x.Password).Length(6, 20);
+            RuleFor(x => x.ConfirmPassword).Equal(z => z.Password);
+            RuleFor(x => x.Email).EmailAddress();
         }
     }
 }
