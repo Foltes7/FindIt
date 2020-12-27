@@ -1,4 +1,4 @@
-export interface ShortUser{
+export interface AuthorizationModel{
     userName: string;
     accessToken: string;
     refreshToken: string;

@@ -73,9 +73,19 @@ export class SignUPComponent implements OnInit, OnDestroy, AfterViewInit {
   get password() { return this.mainForm.get('password'); }
   get confirmPass() { return this.mainForm.get('confirmPassword'); }
 
-  signUp(): void
+  async signUp()
   {
-    console.log(5);
+    const username = this.userName.value;
+    const password = this.password.value;
+    const confirm = this.password.value;
+    const email = this.email.value;
+    const resp = await this.authService.validateUserNameQuery(username).toPromise();
+    if (resp)
+    {
+
+    }else{
+      this.userName.setErrors({username: true});
+    }
   }
 
   ngOnDestroy(): void {

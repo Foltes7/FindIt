@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { LoginResponse } from '../models/loginResponce';
+import { AuthorizationModel } from '../models/authorizationModel';
 import { ValidateResponse } from '../models/validateResponse';
 
 @Injectable()
@@ -22,13 +22,13 @@ export class AuthService {
     return this.httpClient.post<any>(environment.writeAPI + '/api/Auth/registration', obj);
   }
 
-  login(username: string, pass): Observable<LoginResponse>
+  login(username: string, pass): Observable<AuthorizationModel>
   {
     const obj = {
       username,
       password: pass,
     };
-    return this.httpClient.post<LoginResponse>(environment.writeAPI + '/api/Auth/login', obj);
+    return this.httpClient.post<AuthorizationModel>(environment.writeAPI + '/api/Auth/login', obj);
   }
 
   validateEmailQuery(email: string): Observable<ValidateResponse>

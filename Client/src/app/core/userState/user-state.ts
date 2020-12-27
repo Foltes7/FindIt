@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Selector, State } from '@ngxs/store';
-import { ShortUser } from '../models/user';
+import { AuthorizationModel } from '../models/authorizationModel';
 
 
 interface UserState {
-    user: ShortUser;
+    authorization: AuthorizationModel;
 }
 
 @State<UserState>({
     name: 'User',
     defaults: {
-        user: null,
+        authorization: null,
     }
 })
 
@@ -18,8 +18,8 @@ interface UserState {
 export class UserStore {
 
     @Selector()
-    static getUser(state: UserState): ShortUser {
-        return state.user;
+    static getUser(state: UserState): AuthorizationModel {
+        return state.authorization;
     }
 
 }
