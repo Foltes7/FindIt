@@ -10,6 +10,17 @@ export class LoginUser {
     constructor(public username: string, public pass: string) {}
 }
 
+export class RefreshToken {
+    static type = '[User] Refresh token';
+    constructor() {}
+}
+
+export class CheckStatusForTokenUpdating {
+    static type = '[User] Update token';
+    constructor() {}
+}
+
+
 export class LogOutUser {
     static type = '[User] Log out';
     constructor() {}

@@ -88,7 +88,7 @@ namespace WriteAPI.Controllers
 
         [HttpPost("refresh-token")]
         [Authorize]
-        public async Task<ActionResult> RefreshToken([FromBody] RefreshTokenCommand request)
+        public async Task<ActionResult<LoginResult>> RefreshToken([FromBody] RefreshTokenCommand request)
         {
             try
             {
@@ -103,6 +103,7 @@ namespace WriteAPI.Controllers
                 var jwtResult = await _jwtAuthManager.Refresh(request.RefreshToken, accessToken);
                 return Ok(new LoginResult
                 {
+                    Success = true,
                     UserName = userName,
                     AccessToken = jwtResult.AccessToken,
                     RefreshToken = jwtResult.RefreshToken.TokenString
@@ -110,7 +111,9 @@ namespace WriteAPI.Controllers
             }
             catch (SecurityTokenException e)
             {
-                return Unauthorized(e.Message); // return 401 so that the client side can redirect the user to login page
+                return Unauthorized(new LoginResult() {
+                    Success = false
+                });
             }
         }
 

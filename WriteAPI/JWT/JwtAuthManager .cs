@@ -78,7 +78,6 @@ namespace JWT
                 ExpireAt = now.AddMinutes(_jwtTokenConfig.RefreshTokenExpiration)
             };
             await _refreshTokenRepostory.Add(refreshToken);
-
             return new JwtAuthResult
             {
                 AccessToken = accessToken,
@@ -112,7 +111,7 @@ namespace JWT
             {
                 throw new SecurityTokenException("Invalid token");
             }
-
+            await _refreshTokenRepostory.Remove(existingRefreshToken);
             return await GenerateTokens(user.Id, principal.Claims.ToArray(), currentDateTime); // need to recover the original claims
         }
 

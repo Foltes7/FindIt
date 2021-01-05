@@ -36,6 +36,14 @@ export class AuthService {
     return this.httpClient.post(environment.writeAPI + '/api/Auth/logout', null);
   }
 
+  refreshToken(refreshToken: string)
+  {
+    const obj = {
+      refreshToken
+    };
+    return this.httpClient.post<AuthorizationModel>(environment.writeAPI + '/api/Auth/refresh-token', obj);
+  }
+
   validateEmailQuery(email: string): Observable<ValidateResponse>
   {
     const obj = {
