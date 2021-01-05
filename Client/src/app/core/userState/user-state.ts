@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { AuthorizationModel } from '../models/authorizationModel';
 import { AuthService } from '../services/auth.service';
-import { LoginUser, RegisterUser } from './user-actions';
+import { LoginUser, LogOutUser, RegisterUser } from './user-actions';
 
 
 interface UserState {
@@ -23,10 +23,13 @@ export class UserStore {
     constructor(private authService: AuthService) {
 
     }
+
     @Selector()
-    static getUser(state: UserState): AuthorizationModel {
-        return state.authorization;
+    static isLogin(state: UserState): boolean
+    {
+        return state.authorization !== undefined && state.authorization.success === true;
     }
+
 
 
     @Action(RegisterUser)
@@ -36,18 +39,28 @@ export class UserStore {
     }
 
     @Action(LoginUser)
-    async loginUser({ patchState }: StateContext<UserState>, { username, pass }: LoginUser)
+    async loginUser({ patchState, getState }: StateContext<UserState>, { username, pass }: LoginUser)
     {
         const resp = await this.authService.login(username, pass).toPromise();
         if (resp.success)
         {
+            console.log(resp);
             patchState({
                 authorization: resp
             });
+            console.log(getState().authorization);
         }else{
             patchState({
                 authorization: null
             });
         }
+    }
+
+    @Action(LogOutUser)
+    logOut({ patchState, getState }: StateContext<UserState>)
+    {
+        patchState({
+            authorization: null
+        });
     }
 }

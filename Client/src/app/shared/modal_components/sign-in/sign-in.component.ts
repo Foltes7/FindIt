@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { LoginUser } from 'src/app/core/userState/user-actions';
+import { UserStore } from 'src/app/core/userState/user-state';
 import { DialogData } from '../../models/DialogData';
 
 @Component({

@@ -9,3 +9,9 @@ export class LoginUser {
     static type = '[User] Login';
     constructor(public username: string, public pass: string) {}
 }
+
+export class LogOutUser {
+    static type = '[User] Log out';
+    constructor() {}
+}
+

@@ -1,6 +1,6 @@
 export interface AuthorizationModel{
     success: boolean;
-    userName: string;
+    username: string;
     accessToken: string;
     refreshToken: string;
 }

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngxs/store';
+import { LogOutUser } from 'src/app/core/userState/user-actions';
 import { UnsplashService } from 'src/app/shared/unsplash.service';
 
 @Component({
@@ -11,10 +14,19 @@ export class ProfileInProfileComponent implements OnInit {
   followed = false;
   admin = true;
   user: any;
-  constructor(private unsplashService: UnsplashService) { }
+  constructor(private unsplashService: UnsplashService,
+              private store: Store,
+              private router: Router, ) { }
+
 
   ngOnInit(): void {
     // this.unsplashService.getProfile().subscribe(x => this.user = x.user);
+  }
+
+  async logOut()
+  {
+    await this.store.dispatch(new LogOutUser()).toPromise();
+    this.router.navigate(['/about']);
   }
 
 }

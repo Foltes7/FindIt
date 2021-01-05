@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { ContentComponent } from './content/content/content.component';
+import { ContentActivateGuard } from './core/guards/content-activate.guard';
 
 const routes: Routes = [
   {
@@ -27,7 +28,8 @@ const routes: Routes = [
         path: 'profile',
         loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule),
       },
-    ]
+    ],
+    canActivate: [ContentActivateGuard]
   },
   {
     path: 'about',
