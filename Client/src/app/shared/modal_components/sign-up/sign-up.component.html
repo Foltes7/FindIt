@@ -11,7 +11,7 @@
                 </div>
                 <div class="message">
                     <p *ngIf="userName.hasError('username')">User with same username exist</p>
-                    <p *ngIf="userName.invalid && userName.dirty">Min username length 4</p>
+                    <p *ngIf="userName.invalid && userName.dirty && !userName.hasError('username')">Min username length 4</p>
                 </div>
             </div>
         </div>

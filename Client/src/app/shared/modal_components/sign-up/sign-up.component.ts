@@ -49,7 +49,7 @@ export class SignUPComponent implements OnInit, OnDestroy, AfterViewInit {
   userNameValidate()
   {
     const emailControl = this.mainForm.get('userName');
-    emailControl.valueChanges.pipe(debounceTime(3000))
+    emailControl.valueChanges.pipe(debounceTime(700))
     .pipe(takeUntil(this.destroy))
     .subscribe(
         async (value) => await this.userNameValidateHander(emailControl)

@@ -7,7 +7,7 @@
     .form{
         margin-top: 20px;
         margin-bottom: 40px;
-        width: calc(80%);
+        width: calc(85%);
 
         .form-group{
             margin-top: 10px;
@@ -24,11 +24,11 @@
                 display: flex;
                 flex-wrap: wrap;
                 input{
-                    flex-basis: 85%;
+                    flex-basis: 90%;
                 }
                 .validator{
                     height: 39px;
-                    flex-basis: 15%;
+                    flex-basis: 10%;
                     display: flex;
                     justify-content: center;
                     align-items: center;

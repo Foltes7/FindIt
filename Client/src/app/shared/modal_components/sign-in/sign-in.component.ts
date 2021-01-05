@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogData } from '../../models/DialogData';
 
@@ -10,9 +10,23 @@ import { DialogData } from '../../models/DialogData';
 })
 export class SignINComponent implements OnInit {
 
+  public mainForm: FormGroup = new FormGroup({
+    userName: new FormControl('',  [Validators.required, Validators.minLength(4), Validators.maxLength(45)]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20) ]),
+  });
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
   ngOnInit(): void {
+  }
+
+  get userName() { return this.mainForm.get('userName'); }
+  get password() { return this.mainForm.get('password'); }
+
+  async signIn()
+  {
+    const username = this.userName.value;
+    const password = this.password.value;
   }
 
 }

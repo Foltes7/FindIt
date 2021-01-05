@@ -1,1 +1,23 @@
 <app-modal-title [title]="data.title"></app-modal-title>
+<div class="container">
+    <form [formGroup]="mainForm" class="form">
+        <div class="form-group">
+            <label>Username</label>
+            <div class="input-value">
+                <input class="default-input" placeholder="Username" name="userName" formControlName="userName" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <div class="input-value">
+                <input class="default-input" placeholder="Password" type="password" name="password" formControlName="password" />
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="form-group center">
+            <button [disabled]="mainForm.invalid" (click)="signIn()" class="button">
+                <p>Sign In</p>
+            </button>
+        </div>
+    </form>
+</div>
