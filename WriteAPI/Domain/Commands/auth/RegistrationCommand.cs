@@ -28,7 +28,7 @@ namespace Domain.Commands.auth
     {
         public RegistrationCommandValidator()
         {
-            RuleFor(x => x.UserName).NotEmpty();
+            RuleFor(x => x.UserName).NotEmpty().Length(4, 50);
             RuleFor(x => x.Password).Length(6, 20);
             RuleFor(x => x.ConfirmPassword).Equal(z => z.Password);
             RuleFor(x => x.Email).EmailAddress();

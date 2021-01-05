@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { AuthorizationModel } from '../models/authorizationModel';
 import { AuthService } from '../services/auth.service';
-import { RegisterUser } from './user-actions';
+import { LoginUser, RegisterUser } from './user-actions';
 
 
 interface UserState {
@@ -33,5 +33,21 @@ export class UserStore {
     async registerUser({ setState, dispatch }: StateContext<UserState>, { username, confirmPassword, pass, email }: RegisterUser)
     {
         const register = await this.authService.register(username, pass, confirmPassword, email).toPromise();
+    }
+
+    @Action(LoginUser)
+    async loginUser({ patchState }: StateContext<UserState>, { username, pass }: LoginUser)
+    {
+        const resp = await this.authService.login(username, pass).toPromise();
+        if (resp.success)
+        {
+            patchState({
+                authorization: resp
+            });
+        }else{
+            patchState({
+                authorization: null
+            });
+        }
     }
 }

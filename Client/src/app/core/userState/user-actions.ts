@@ -7,5 +7,5 @@ export class RegisterUser {
 
 export class LoginUser {
     static type = '[User] Login';
-    constructor() {}
+    constructor(public username: string, public pass: string) {}
 }

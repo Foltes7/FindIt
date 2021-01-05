@@ -16,8 +16,8 @@ namespace Domain.Commands.auth
     {
         public LoginCommandValidator()
         {
-            RuleFor(x => x.UserName).NotEmpty().Length(3,15);
-            RuleFor(x => x.Password).Length(8, 30);
+            RuleFor(x => x.UserName).NotEmpty().Length(4,50);
+            RuleFor(x => x.Password).Length(6, 20);
         }
     }
 }

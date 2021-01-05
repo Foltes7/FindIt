@@ -1,6 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { Store } from '@ngxs/store';
+import { LoginUser } from 'src/app/core/userState/user-actions';
 import { DialogData } from '../../models/DialogData';
 
 @Component({
@@ -16,8 +19,10 @@ export class SignINComponent implements OnInit {
   });
 
   constructor(
+    private store: Store,
     public dialogRef: MatDialogRef<SignINComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private router: Router,
     ) { }
 
   ngOnInit(): void {
@@ -30,6 +35,9 @@ export class SignINComponent implements OnInit {
   {
     const username = this.userName.value;
     const password = this.password.value;
+    await this.store.dispatch(new LoginUser(username, password)).toPromise();
+    this.close();
+    this.router.navigate(['/']);
   }
 
   close(): void

@@ -4,6 +4,9 @@ namespace Common.DTO.Auth
 {
     public class LoginResult
     {
+        [JsonProperty("success")]
+        public bool Success { get; set; }
+
         [JsonProperty("username")]
         public string UserName { get; set; }
 

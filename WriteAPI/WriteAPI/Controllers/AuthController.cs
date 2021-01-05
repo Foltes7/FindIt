@@ -35,7 +35,7 @@ namespace WriteAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost("login")]
-        public async Task<ActionResult> Login([FromBody] LoginCommand request)
+        public async Task<ActionResult<LoginResult>> Login([FromBody] LoginCommand request)
         {
             var user = await _userManager.FindByNameAsync(request.UserName);
             if(user != null)
@@ -48,13 +48,17 @@ namespace WriteAPI.Controllers
 
                     return Ok(new LoginResult
                     {
+                        Success = true,
                         UserName = request.UserName,
                         AccessToken = jwtResult.AccessToken,
                         RefreshToken = jwtResult.RefreshToken.TokenString
                     });
                 }
             }
-            return BadRequest();
+            return Ok(new LoginResult
+            {
+                Success = false,
+            });
         }
 
         [AllowAnonymous]
