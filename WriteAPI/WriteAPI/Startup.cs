@@ -1,5 +1,6 @@
 using Domain.Commands.auth;
 using FluentValidation.AspNetCore;
+using JWT;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -35,6 +36,9 @@ namespace WriteAPI
                        .AllowCredentials()
                        .WithOrigins("http://localhost:4200", "http://localhost:8080");
             }));
+
+            services.AddHostedService<HostedTokenClearing>();
+
 
             services.DataBase(Configuration);
             services.JWT(Configuration);
