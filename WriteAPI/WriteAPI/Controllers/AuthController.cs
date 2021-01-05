@@ -1,5 +1,6 @@
 ﻿using Common.Database.models;
 using Common.DTO.Auth;
+using Context.GenericRepository;
 using Domain.Commands.auth;
 using Domain.Query.auth;
 using JWT;
@@ -44,7 +45,7 @@ namespace WriteAPI.Controllers
                 if (check.Succeeded)
                 {
                     var claims = new[] { new Claim(ClaimTypes.Name, request.UserName) };
-                    var jwtResult = _jwtAuthManager.GenerateTokens(request.UserName, claims, DateTime.Now);
+                    var jwtResult = await _jwtAuthManager.GenerateTokens(user.Id, claims, DateTime.Now);
 
                     return Ok(new LoginResult
                     {
@@ -77,13 +78,11 @@ namespace WriteAPI.Controllers
 
         [HttpPost("logout")]
         [Authorize]
-        public ActionResult Logout()
+        public async Task<ActionResult> Logout()
         {
-            // optionally "revoke" JWT token on the server side --> add the current token to a block-list
-            // https://github.com/auth0/node-jsonwebtoken/issues/375
-
             var userName = User.Identity.Name;
-            _jwtAuthManager.RemoveRefreshTokenByUserName(userName);
+            var user = await _userManager.FindByNameAsync(userName);
+            await _jwtAuthManager.RemoveRefreshTokenByUserName(user.Id);
             return Ok();
         }
 
@@ -101,7 +100,7 @@ namespace WriteAPI.Controllers
                 }
 
                 var accessToken = await HttpContext.GetTokenAsync("Bearer", "access_token");
-                var jwtResult = _jwtAuthManager.Refresh(request.RefreshToken, accessToken, DateTime.Now);
+                var jwtResult = await _jwtAuthManager.Refresh(request.RefreshToken, accessToken);
                 return Ok(new LoginResult
                 {
                     UserName = userName,

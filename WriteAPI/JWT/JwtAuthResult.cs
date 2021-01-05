@@ -1,7 +1,5 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Common.Database.models;
+using Newtonsoft.Json;
 
 namespace JWT
 {

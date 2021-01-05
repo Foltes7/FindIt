@@ -42,7 +42,7 @@ namespace WriteAPI.ConfigurationAPI
         }
         public static void BL(this IServiceCollection services, IConfiguration Configuration)
         {
-            services.AddSingleton<IJwtAuthManager, JwtAuthManager>();
+            services.AddTransient<IJwtAuthManager, JwtAuthManager>();
         }
 
         public static void DataBase(this IServiceCollection services, IConfiguration Configuration)

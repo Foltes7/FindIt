@@ -1,4 +1,7 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Common.Database.models;
+using Context.GenericRepository;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Concurrent;
 using System.IdentityModel.Tokens.Jwt;
@@ -6,51 +9,58 @@ using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace JWT
 {
     public interface IJwtAuthManager
     {
-        JwtAuthResult GenerateTokens(string username, Claim[] claims, DateTime now);
-        JwtAuthResult Refresh(string refreshToken, string accessToken, DateTime now);
-        void RemoveExpiredRefreshTokens(DateTime now);
-        void RemoveRefreshTokenByUserName(string userName);
+        Task<JwtAuthResult> GenerateTokens(Guid userId, Claim[] claims, DateTime now);
+        Task<JwtAuthResult> Refresh(string refreshToken, string accessToken);
+        Task RemoveExpiredRefreshTokens(DateTime now);
+        Task RemoveRefreshTokenByUserName(Guid userId);
         (ClaimsPrincipal, JwtSecurityToken) DecodeJwtToken(string token);
     }
     public class JwtAuthManager : IJwtAuthManager
-    {
-        private readonly ConcurrentDictionary<string, RefreshToken> _usersRefreshTokens;  // can store in a database or a distributed cache
+    {    
         private readonly JwtTokenConfig _jwtTokenConfig;
         private readonly byte[] _secret;
+        private readonly IRepository<RefreshToken> _refreshTokenRepostory;
+        private readonly UserManager<User> _userManager;
 
-        public JwtAuthManager(JwtTokenConfig jwtTokenConfig)
+        public JwtAuthManager(
+            JwtTokenConfig jwtTokenConfig,
+            IRepository<RefreshToken> refreshTokenRepostory,
+            UserManager<User> _userManager
+            )
         {
             _jwtTokenConfig = jwtTokenConfig;
-            _usersRefreshTokens = new ConcurrentDictionary<string, RefreshToken>();
             _secret = Encoding.ASCII.GetBytes(jwtTokenConfig.Secret);
+            _refreshTokenRepostory = refreshTokenRepostory;
+            this._userManager = _userManager;
         }
 
         // optional: clean up expired refresh tokens
-        public void RemoveExpiredRefreshTokens(DateTime now)
+        public async Task RemoveExpiredRefreshTokens(DateTime now)
         {
-            var expiredTokens = _usersRefreshTokens.Where(x => x.Value.ExpireAt < now).ToList();
+            var expiredTokens = await _refreshTokenRepostory.GetWhere(x => x.ExpireAt < now);
             foreach (var expiredToken in expiredTokens)
             {
-                _usersRefreshTokens.TryRemove(expiredToken.Key, out _);
+                await _refreshTokenRepostory.Remove(expiredToken);
             }
         }
 
         // can be more specific to ip, user agent, device name, etc.
-        public void RemoveRefreshTokenByUserName(string userName)
+        public async Task RemoveRefreshTokenByUserName(Guid userId)
         {
-            var refreshTokens = _usersRefreshTokens.Where(x => x.Value.UserName == userName).ToList();
-            foreach (var refreshToken in refreshTokens)
+            var refreshToken = await _refreshTokenRepostory.FirstOrDefault(z => z.UserId == userId);
+            if(refreshToken != null)
             {
-                _usersRefreshTokens.TryRemove(refreshToken.Key, out _);
+                await _refreshTokenRepostory.Remove(refreshToken);
             }
         }
 
-        public JwtAuthResult GenerateTokens(string username, Claim[] claims, DateTime now)
+        public async Task<JwtAuthResult> GenerateTokens(Guid userId, Claim[] claims, DateTime now)
         {
             var shouldAddAudienceClaim = string.IsNullOrWhiteSpace(claims?.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Aud)?.Value);
             var jwtToken = new JwtSecurityToken(
@@ -63,11 +73,11 @@ namespace JWT
 
             var refreshToken = new RefreshToken
             {
-                UserName = username,
+                UserId = userId,
                 TokenString = GenerateRefreshTokenString(),
                 ExpireAt = now.AddMinutes(_jwtTokenConfig.RefreshTokenExpiration)
             };
-            _usersRefreshTokens.AddOrUpdate(refreshToken.TokenString, refreshToken, (s, t) => refreshToken);
+            await _refreshTokenRepostory.Add(refreshToken);
 
             return new JwtAuthResult
             {
@@ -76,8 +86,9 @@ namespace JWT
             };
         }
 
-        public JwtAuthResult Refresh(string refreshToken, string accessToken, DateTime now)
+        public async Task<JwtAuthResult> Refresh(string refreshToken, string accessToken)
         {
+            var currentDateTime = DateTime.Now;
             var (principal, jwtToken) = DecodeJwtToken(accessToken);
             if (jwtToken == null || !jwtToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256Signature))
             {
@@ -85,16 +96,24 @@ namespace JWT
             }
 
             var userName = principal.Identity.Name;
-            if (!_usersRefreshTokens.TryGetValue(refreshToken, out var existingRefreshToken))
+            var user = await _userManager.FindByNameAsync(userName);
+            if(user == null)
+            {
+                throw new SecurityTokenException("Invalid user name");
+            }
+
+            var existingRefreshToken = await _refreshTokenRepostory.FirstOrDefault(z => z.TokenString == refreshToken && z.UserId == user.Id);
+
+            if (existingRefreshToken == null)
             {
                 throw new SecurityTokenException("Invalid token");
             }
-            if (existingRefreshToken.UserName != userName || existingRefreshToken.ExpireAt < now)
+            if (existingRefreshToken.ExpireAt < currentDateTime)
             {
                 throw new SecurityTokenException("Invalid token");
             }
 
-            return GenerateTokens(userName, principal.Claims.ToArray(), now); // need to recover the original claims
+            return await GenerateTokens(user.Id, principal.Claims.ToArray(), currentDateTime); // need to recover the original claims
         }
 
         public (ClaimsPrincipal, JwtSecurityToken) DecodeJwtToken(string token)

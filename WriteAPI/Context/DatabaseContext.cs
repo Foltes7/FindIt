@@ -7,6 +7,9 @@ namespace Context
 {
     public class DatabaseContext : IdentityDbContext<User, Role, Guid>
     {
+
+        public DbSet<RefreshToken> RefreshTokens { set; get; }
+
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
             //Database.EnsureCreated();

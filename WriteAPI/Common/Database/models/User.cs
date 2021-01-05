@@ -6,5 +6,6 @@ namespace Common.Database.models
     public class User : IdentityUser<Guid>
     {
         public string PhotoId { set; get; }
+        public RefreshToken RefreshToken { set; get; }
     }
 }
