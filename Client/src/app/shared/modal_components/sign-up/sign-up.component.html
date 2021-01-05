@@ -1,4 +1,4 @@
-<app-modal-title [title]="data.title"></app-modal-title>
+<app-modal-title (closeEvent)="close()" [title]="data.title"></app-modal-title>
 <div class="container">
     <form [formGroup]="mainForm" class="form">
         <div class="form-group">

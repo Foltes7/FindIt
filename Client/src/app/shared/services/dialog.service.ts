@@ -14,7 +14,7 @@ export class DialogService {
       console.log(`Dialog result: ${result}`);
     });
 
-    dialogRef.disableClose = false;
+    dialogRef.disableClose = true;
   }
 
 }

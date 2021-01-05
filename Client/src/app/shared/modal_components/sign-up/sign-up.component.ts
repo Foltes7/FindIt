@@ -1,9 +1,9 @@
 import { AfterViewInit, Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
-import { Observable, of, Subject } from 'rxjs';
-import { debounceTime, delay, takeUntil, tap } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { RegisterUser } from 'src/app/core/userState/user-actions';
 import { DialogData } from '../../models/DialogData';
@@ -15,9 +15,11 @@ import { DialogData } from '../../models/DialogData';
 })
 export class SignUPComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData,
-              private authService: AuthService,
-              private store: Store) { }
+  constructor(
+             public dialogRef: MatDialogRef<SignUPComponent>,
+             @Inject(MAT_DIALOG_DATA) public data: DialogData,
+             private authService: AuthService,
+             private store: Store) { }
 
   destroy = new Subject<void>();
 
@@ -89,6 +91,11 @@ export class SignUPComponent implements OnInit, OnDestroy, AfterViewInit {
     }else{
       this.userName.setErrors({username: true});
     }
+  }
+
+  close(): void
+  {
+    this.dialogRef.close();
   }
 
   ngOnDestroy(): void {

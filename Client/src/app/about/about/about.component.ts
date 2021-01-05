@@ -25,6 +25,7 @@ export class AboutComponent implements OnInit {
         title: 'Sign Up'
       },
       panelClass: 'custom-dialog-class',
+      disableClose: true
       // hasBackdrop: false
     };
     this.dialogService.openDialog(SignUPComponent, config);
@@ -39,6 +40,7 @@ export class AboutComponent implements OnInit {
         title: 'Sign In'
       },
       panelClass: 'custom-dialog-class',
+      disableClose: true
     };
     this.dialogService.openDialog(SignINComponent, config);
   }

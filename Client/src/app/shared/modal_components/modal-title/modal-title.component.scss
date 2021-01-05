@@ -1,4 +1,5 @@
 .container{
+    position: relative;
     height: 35px;
     width: 100%;
     display: flex;
@@ -8,6 +9,17 @@
     font-size: 0.75rem;
     color: white;
     p{
-        margin-left: 10px;
+        margin-left: 15px;
+    }
+
+    i{
+        position: absolute;
+        right: 15px;
+        top: 9px;
+        cursor: pointer;
+        &:before{
+            color:white;
+            font-size: 16px;
+        }
     }
 }

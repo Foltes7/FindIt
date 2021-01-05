@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogData } from '../../models/DialogData';
 
 @Component({
@@ -15,7 +15,10 @@ export class SignINComponent implements OnInit {
     password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20) ]),
   });
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+  constructor(
+    public dialogRef: MatDialogRef<SignINComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData
+    ) { }
 
   ngOnInit(): void {
   }
@@ -27,6 +30,11 @@ export class SignINComponent implements OnInit {
   {
     const username = this.userName.value;
     const password = this.password.value;
+  }
+
+  close(): void
+  {
+    this.dialogRef.close();
   }
 
 }
