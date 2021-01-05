@@ -25,6 +25,12 @@ export class UserStore {
     }
 
     @Selector()
+    static token(state: UserState): string
+    {
+        return state.authorization.accessToken;
+    }
+
+    @Selector()
     static isLogin(state: UserState): boolean
     {
         return state.authorization !== undefined && state.authorization.success === true;
@@ -35,7 +41,7 @@ export class UserStore {
     @Action(RegisterUser)
     async registerUser({ setState, dispatch }: StateContext<UserState>, { username, confirmPassword, pass, email }: RegisterUser)
     {
-        const register = await this.authService.register(username, pass, confirmPassword, email).toPromise();
+        await this.authService.register(username, pass, confirmPassword, email).toPromise();
     }
 
     @Action(LoginUser)
@@ -57,8 +63,9 @@ export class UserStore {
     }
 
     @Action(LogOutUser)
-    logOut({ patchState, getState }: StateContext<UserState>)
+    async logOut({ patchState, getState }: StateContext<UserState>)
     {
+        await this.authService.logout().toPromise();
         patchState({
             authorization: null
         });

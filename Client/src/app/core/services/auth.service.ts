@@ -31,6 +31,11 @@ export class AuthService {
     return this.httpClient.post<AuthorizationModel>(environment.writeAPI + '/api/Auth/login', obj);
   }
 
+  logout()
+  {
+    return this.httpClient.post(environment.writeAPI + '/api/Auth/logout', null);
+  }
+
   validateEmailQuery(email: string): Observable<ValidateResponse>
   {
     const obj = {

@@ -1,11 +1,12 @@
 import { AfterViewInit, Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { RegisterUser } from 'src/app/core/userState/user-actions';
+import { LoginUser, RegisterUser } from 'src/app/core/userState/user-actions';
 import { DialogData } from '../../models/DialogData';
 
 @Component({
@@ -19,7 +20,8 @@ export class SignUPComponent implements OnInit, OnDestroy, AfterViewInit {
              public dialogRef: MatDialogRef<SignUPComponent>,
              @Inject(MAT_DIALOG_DATA) public data: DialogData,
              private authService: AuthService,
-             private store: Store) { }
+             private store: Store,
+             private router: Router, ) { }
 
   destroy = new Subject<void>();
 
@@ -48,7 +50,7 @@ export class SignUPComponent implements OnInit, OnDestroy, AfterViewInit {
     return null;
 }
 
-  userNameValidate()
+  userNameValidate(): void
   {
     const emailControl = this.mainForm.get('userName');
     emailControl.valueChanges.pipe(debounceTime(700))
@@ -58,7 +60,7 @@ export class SignUPComponent implements OnInit, OnDestroy, AfterViewInit {
     );
   }
 
-  async userNameValidateHander(control: AbstractControl) {
+  async userNameValidateHander(control: AbstractControl): Promise<void> {
     const userName = control.value;
     if (userName.length >= 4)
     {
@@ -72,13 +74,13 @@ export class SignUPComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  get userName() { return this.mainForm.get('userName'); }
+  get userName(): AbstractControl { return this.mainForm.get('userName'); }
 
-  get email() { return this.mainForm.get('email'); }
-  get password() { return this.mainForm.get('password'); }
-  get confirmPass() { return this.mainForm.get('confirmPassword'); }
+  get email(): AbstractControl { return this.mainForm.get('email'); }
+  get password(): AbstractControl { return this.mainForm.get('password'); }
+  get confirmPass(): AbstractControl { return this.mainForm.get('confirmPassword'); }
 
-  async signUp()
+  async signUp(): Promise<void>
   {
     const username = this.userName.value;
     const password = this.password.value;
@@ -87,7 +89,10 @@ export class SignUPComponent implements OnInit, OnDestroy, AfterViewInit {
     const resp = await this.authService.validateUserNameQuery(username).toPromise();
     if (resp)
     {
-      this.store.dispatch(new RegisterUser(username, password, confirm, email));
+      await this.store.dispatch(new RegisterUser(username, password, confirm, email)).toPromise();
+      await this.store.dispatch(new LoginUser(username, password)).toPromise();
+      this.close();
+      this.router.navigate(['/']);
     }else{
       this.userName.setErrors({username: true});
     }
