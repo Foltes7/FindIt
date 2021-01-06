@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Observable, throwError } from 'rxjs';
 import { tap, map, catchError } from 'rxjs/operators';
-import { UserStore } from './userState/user-state';
+import { UserStore } from '../userState/user-state';
 
 @Injectable()
 export class IntercepterService {
@@ -12,7 +12,7 @@ export class IntercepterService {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if (!request.url.includes('api.unsplash.com'))
+    if (!request.url.includes('api.unsplash.com')) // TODO FIX
     {
       const token =  this.store.selectSnapshot(UserStore.token);
       request = request.clone({
@@ -22,22 +22,6 @@ export class IntercepterService {
       });
     }
 
-
-    return next.handle(request).pipe(
-      map((event: HttpEvent<any>) => {
-          if (event instanceof HttpResponse) {
-              console.log('event--->>>', event);
-          }
-          return event;
-      }),
-      catchError((error: HttpErrorResponse) => {
-        let data = {};
-        data = {
-            reason: error && error.error && error.error.reason ? error.error.reason : '',
-            status: error.status
-        };
-        return throwError(error);
-    }));
-
+    return next.handle(request);
   }
 }

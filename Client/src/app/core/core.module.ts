@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { IntercepterService } from './intercepter.service';
+import { IntercepterService } from './intercepters/intercepter.service';
 import { AuthService } from './services/auth.service';
+import { UnauthorizedInterceptor } from './intercepters/unauthorized.interceptor';
 
 
 @NgModule({
@@ -20,6 +21,11 @@ import { AuthService } from './services/auth.service';
       provide: HTTP_INTERCEPTORS,
       useClass: IntercepterService,
       multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: UnauthorizedInterceptor,
+      multi: true,
     },
   ]
 })

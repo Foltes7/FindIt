@@ -55,6 +55,7 @@ export class UserStore {
     {
         const flag = getState().authorization !== undefined && getState().authorization.success === true;
         if (flag && (!this.subscribe || this.subscribe.closed)){
+            dispatch(new RefreshToken());
             this.subscribe = this.refreshInterval.subscribe(() => dispatch(new RefreshToken()));
         }
     }
