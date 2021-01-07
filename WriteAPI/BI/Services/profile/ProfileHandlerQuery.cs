@@ -28,7 +28,12 @@ namespace BI.Services.profile
             {
                 throw new Exception("User not found");
             }
-            return mapper.Map<UserDTO>(user);
+            var userDTO = mapper.Map<UserDTO>(user);
+            if(user.UserName == request.UserName && user.Email == request.Email)
+            {
+                userDTO.OwnProfile = true;
+            }
+            return userDTO;
         }
     }
 }

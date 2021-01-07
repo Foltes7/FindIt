@@ -6,4 +6,5 @@ export interface Profile{
     description: string;
     country: string;
     webSite: string;
+    ownProfile: boolean;
 }

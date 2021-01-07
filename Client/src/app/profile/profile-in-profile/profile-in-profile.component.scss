@@ -90,21 +90,7 @@
             justify-content: center;
             width: 160px;
 
-            .edit-profile {
-                width: 120px;
-                height: 32px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                border: 1px solid $button-border;
-                border-radius: 3px;
-                cursor: pointer;
-
-                p {
-                    font-size: 0.875rem;
-                    font-weight: bold;
-                    color: $active-header-icon-color;
-                }
+            .edit-profile-button {
             }
         }
 
@@ -113,22 +99,8 @@
             justify-content: flex-end;
             width: calc(100% - 160px);
 
-            .contact {
+            .contact-button {
                 margin-right: 30px;
-                width: 120px;
-                height: 32px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                border: 1px solid $button-border;
-                border-radius: 3px;
-                cursor: pointer;
-
-                p {
-                    font-size: 0.875rem;
-                    font-weight: bold;
-                    color: $active-header-icon-color;
-                }
 
                 i {
                     margin-left: 8px;
@@ -168,20 +140,6 @@
                 }
             }
             .unfollow-button {
-                width: 120px;
-                height: 32px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                border: 1px solid $button-border;
-                border-radius: 3px;
-                cursor: pointer;
-
-                p {
-                    font-size: 0.875rem;
-                    font-weight: bold;
-                    color: $active-header-icon-color;
-                }
             }
         }
     }
@@ -197,19 +155,10 @@
         .button-business {
             margin-right: 30px;
             width: 200px;
-            height: 32px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 1px solid $button-border;
-            border-radius: 3px;
-            cursor: pointer;
-
-            p {
-                font-size: 0.875rem;
-                font-weight: bold;
-                color: $active-header-icon-color;
-            }
+        }
+        .button-default {
+            margin-right: 30px;
+            width: 200px;
         }
     }
 
@@ -262,20 +211,7 @@
         margin-top: 20px;
         display: flex;
         justify-content: center;
-        .button{
-            width: 120px;
-            height: 32px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 1px solid $button-border;
-            border-radius: 3px;
-            cursor: pointer;
-            p {
-                font-size: 0.875rem;
-                font-weight: bold;
-                color: $active-header-icon-color;
-            }
+        .button-logout{
         }
     }
 }

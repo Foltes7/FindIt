@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { LogOutUser } from 'src/app/core/userState/user-actions';
 import { UnsplashService } from 'src/app/shared/unsplash.service';
+import { Profile } from '../models/profile';
+import { ProfileStore } from '../profileState/profile-state';
 
 @Component({
   selector: 'app-profile-in-profile',
@@ -12,8 +15,10 @@ import { UnsplashService } from 'src/app/shared/unsplash.service';
 })
 export class ProfileInProfileComponent implements OnInit {
 
-  followed = false;
-  admin = true;
+  @Select(ProfileStore.currentPageProfile)
+  public profile$: Observable<Profile>;
+
+  followed = true;
   user: any;
   constructor(private unsplashService: UnsplashService,
               private store: Store,

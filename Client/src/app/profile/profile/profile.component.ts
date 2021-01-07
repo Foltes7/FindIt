@@ -33,7 +33,7 @@ export class ProfileComponent implements OnInit {
 
     this.routeSubscription = route.params.subscribe(async (params) => {
       this.id = params.id;
-      setTimeout(() => this.store.dispatch(new GetProfile(this.id)), 1000);
+      this.store.dispatch(new GetProfile(this.id));
     });
 
    }

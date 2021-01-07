@@ -22,12 +22,12 @@
     </div>
     <div class="buttons width-content">
         <div class="edit-section">
-            <div *ngIf="admin" class="edit-profile">
+            <div *ngIf="(profile$ | async).ownProfile" class="edit-profile-button button-outline">
                 <p>Edit profile</p>
             </div>
         </div>
-        <div *ngIf="!admin" class="user-section">
-            <div class="contact">
+        <div *ngIf="!(profile$ | async).ownProfile" class="user-section">
+            <div class="contact-button button-outline">
                 <p>Contact</p>
                 <i class="icon-contact"></i>
             </div>
@@ -35,19 +35,22 @@
                 <p>Follow</p>
                 <i class="icon-like"></i>
             </div>
-            <div *ngIf="followed" class="unfollow-button">
+            <div *ngIf="followed" class="unfollow-button button-outline">
                 <p>Unfollow</p>
             </div>
         </div>
     </div>
     <div class="divider width-content">
     </div>
-    <div *ngIf="admin" class="business-container width-content">
-        <div class="button-business">
+    <div *ngIf="(profile$ | async).ownProfile" class="business-container width-content">
+        <div *ngIf="(profile$ | async).isBussinessAcc" class="button-business button-outline">
             <p>Set business account</p>
         </div>
+        <div *ngIf="!(profile$ | async).isBussinessAcc" class="button-default button-outline">
+            <p>Set default account</p>
+        </div>
     </div>
-    <div *ngIf="admin" class="divider width-content">
+    <div *ngIf="(profile$ | async).ownProfile" class="divider width-content">
     </div>
     <div class="additional-info width-content">
         <div class="site">
@@ -65,8 +68,8 @@
     </div>
     <div class="divider width-content">
     </div>
-    <div *ngIf="admin" class="logout" routerLink="/about">
-        <div (click)="logOut()" class="button">
+    <div *ngIf="(profile$ | async).ownProfile" class="logout" routerLink="/about">
+        <div (click)="logOut()" class="button-logout button-outline">
             <p>Log out</p>
         </div>
     </div>

@@ -53,19 +53,8 @@
                 }
 
                 .button-save {
-                    outline: none;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
                     height: 28px;
                     width: 116px;
-                    border: 1px solid $button-border;
-                    border-radius: 3px;
-                    cursor: pointer;
-                    p {
-                        font-weight: bold;
-                        color: $active-header-icon-color;
-                    }
                 }
 
                 .button-contact {

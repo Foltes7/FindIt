@@ -15,5 +15,6 @@ namespace Common.DTO.Profile
         public string Description { set; get; }
         public string Country { set; get; }
         public string WebSite { set; get; }
+        public bool OwnProfile { set; get; }
     }
 }

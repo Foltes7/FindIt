@@ -5,7 +5,7 @@
                 <p>Profile</p>
                 <div class="item-line"></div>
             </div>
-            <div class="nav-item" routerLink="things" routerLinkActive="active">
+            <div *ngIf="(profile$ | async).isBussinessAcc" class="nav-item" routerLink="things" routerLinkActive="active">
                 <p>Things</p>
                 <div class="item-line"></div>
             </div>
