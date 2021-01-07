@@ -21,16 +21,18 @@ namespace WriteAPI.Controllers
             this._mediator = _mediator;
         }
 
-        [HttpPatch("account/bussiness")]
-        public async Task SetBussinessAccount(SetBussinessAccountCommand command)
+        [HttpGet("account/bussiness")]
+        public async Task SetBussinessAccount()
         {
+            var command = new SetBussinessAccountCommand();
             this.SetRequestClaims(command);
             await this._mediator.Send(command);
         }
 
-        [HttpPatch("account/default")]
-        public async Task SetDefaultAccount(SetDefaultAccountCommand command)
+        [HttpGet("account/default")]
+        public async Task SetDefaultAccount()
         {
+            var command = new SetDefaultAccountCommand();
             this.SetRequestClaims(command);
             await this._mediator.Send(command);
         }

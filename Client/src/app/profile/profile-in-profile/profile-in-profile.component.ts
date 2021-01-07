@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { LogOutUser } from 'src/app/core/userState/user-actions';
 import { UnsplashService } from 'src/app/shared/unsplash.service';
 import { Profile } from '../models/profile';
+import { SetBussinessAccount, SetDefaultAccount } from '../profileState/profile-actions';
 import { ProfileStore } from '../profileState/profile-state';
 
 @Component({
@@ -37,4 +38,13 @@ export class ProfileInProfileComponent implements OnInit {
     this.router.navigate(['/about']);
   }
 
+  setBussinessAccount(): void
+  {
+    this.store.dispatch(SetBussinessAccount);
+  }
+
+  setDefaultAccount(): void
+  {
+    this.store.dispatch(SetDefaultAccount);
+  }
 }

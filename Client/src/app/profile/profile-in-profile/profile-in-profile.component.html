@@ -43,10 +43,10 @@
     <div class="divider width-content">
     </div>
     <div *ngIf="(profile$ | async).ownProfile" class="business-container width-content">
-        <div *ngIf="(profile$ | async).isBussinessAcc" class="button-business button-outline">
+        <div (click)="setBussinessAccount()" *ngIf="!(profile$ | async).isBussinessAcc" class="button-business button-outline">
             <p>Set business account</p>
         </div>
-        <div *ngIf="!(profile$ | async).isBussinessAcc" class="button-default button-outline">
+        <div (click)="setDefaultAccount()" *ngIf="(profile$ | async).isBussinessAcc" class="button-default button-outline">
             <p>Set default account</p>
         </div>
     </div>

@@ -13,4 +13,14 @@ export class ProfileService {
   {
     return this.httpClient.get<Profile>(environment.writeAPI + `/api/profile/${username}`);
   }
+
+  setDefaultAccount(): Observable<any>
+  {
+    return this.httpClient.get(environment.writeAPI + `/api/profile/account/default`);
+  }
+
+  setBussinessAccount(): Observable<any>
+  {
+    return this.httpClient.get(environment.writeAPI + `/api/profile/account/bussiness`);
+  }
 }
