@@ -98,7 +98,6 @@ export class UserStore {
     @Action(LogOutUser)
     async logOut({ patchState, getState }: StateContext<UserState>)
     {
-        await this.authService.logout().toPromise();
         this.subscribe?.unsubscribe();
         patchState({
             authorization: null

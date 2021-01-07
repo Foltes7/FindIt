@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { UserStore } from '../userState/user-state';
@@ -9,7 +9,8 @@ import { UserStore } from '../userState/user-state';
 })
 export class ContentActivateGuard implements CanActivate {
 
-  constructor(private store: Store)
+  constructor(private store: Store,
+              private router: Router)
   {
 
   }
@@ -18,7 +19,12 @@ export class ContentActivateGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot, ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const isLogin = this.store.selectSnapshot(UserStore.isLogin);
-    return isLogin;
+    if (isLogin){
+      return true;
+    }else{
+      this.router.navigate(['/about']);
+    }
+    return false;
   }
 
 }

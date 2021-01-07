@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { LogOutUser } from 'src/app/core/userState/user-actions';
 import { UnsplashService } from 'src/app/shared/unsplash.service';
 
@@ -16,7 +17,8 @@ export class ProfileInProfileComponent implements OnInit {
   user: any;
   constructor(private unsplashService: UnsplashService,
               private store: Store,
-              private router: Router, ) { }
+              private router: Router,
+              private authService: AuthService, ) { }
 
 
   ngOnInit(): void {
@@ -25,6 +27,7 @@ export class ProfileInProfileComponent implements OnInit {
 
   async logOut()
   {
+    await this.authService.logout().toPromise();
     await this.store.dispatch(new LogOutUser()).toPromise();
     this.router.navigate(['/about']);
   }
