@@ -114,21 +114,6 @@
             }
 
             .follow-button {
-                width: 120px;
-                height: 32px;
-                background-color: $blue-color;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                border-radius: 3px;
-                cursor: pointer;
-
-                p {
-                    font-size: 0.875rem;
-                    font-weight: bold;
-                    color: white;
-                }
-
                 i {
                     margin-left: 8px;
                     margin-bottom: 4px;

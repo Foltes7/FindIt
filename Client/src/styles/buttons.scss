@@ -18,3 +18,22 @@
         color: $active-header-icon-color;
     }
 }
+
+.button-light{
+    outline: none;
+    width: 120px;
+    height: 32px;
+    background-color: $blue-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    cursor: pointer;
+
+    p {
+        font-size: 0.875rem;
+        font-weight: bold;
+        color: white;
+    }
+
+}

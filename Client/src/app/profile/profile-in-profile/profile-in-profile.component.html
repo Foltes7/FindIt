@@ -31,7 +31,7 @@
                 <p>Contact</p>
                 <i class="icon-contact"></i>
             </div>
-            <div *ngIf="!followed" class="follow-button">
+            <div *ngIf="!followed" class="follow-button button-light">
                 <p>Follow</p>
                 <i class="icon-like"></i>
             </div>
@@ -68,7 +68,7 @@
     </div>
     <div class="divider width-content">
     </div>
-    <div *ngIf="(profile$ | async).ownProfile" class="logout" routerLink="/about">
+    <div *ngIf="(profile$ | async).ownProfile" class="logout">
         <div (click)="logOut()" class="button-logout button-outline">
             <p>Log out</p>
         </div>

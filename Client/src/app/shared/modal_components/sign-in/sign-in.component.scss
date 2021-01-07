@@ -39,23 +39,8 @@
             margin-top: 25px;
             align-items: center;
         }
-        .button{
-            outline: none;
+        .button-signIn{
             border: none;
-            width: 120px;
-            height: 32px;
-            background-color: $blue-color;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 3px;
-            cursor: pointer;
-
-            p {
-                font-size: 0.875rem;
-                font-weight: bold;
-                color: white;
-            }
             &:disabled{
                 cursor:default ;
                 background-color:#f2f2f2;

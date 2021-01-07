@@ -18,7 +18,7 @@ export class ProfileInProfileComponent implements OnInit {
   @Select(ProfileStore.currentPageProfile)
   public profile$: Observable<Profile>;
 
-  followed = true;
+  followed = false;
   user: any;
   constructor(private unsplashService: UnsplashService,
               private store: Store,
