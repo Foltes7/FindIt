@@ -1,4 +1,4 @@
-<div class="content">
+<div *ngIf="profile$ | async" class="content">
     <div class="second-menu">
         <div class="navigation">
             <div class="nav-item" routerLink="./" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
@@ -15,4 +15,7 @@
     <div class="content-profile">
         <router-outlet></router-outlet>
     </div>
+</div>
+<div class="spinner-container">
+    <app-spinner *ngIf="!(profile$ | async)"></app-spinner>
 </div>

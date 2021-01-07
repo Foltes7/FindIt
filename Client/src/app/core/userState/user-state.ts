@@ -42,6 +42,12 @@ export class UserStore {
         return state.authorization !== undefined && state.authorization.success === true;
     }
 
+    @Selector()
+    static userName(state: UserState): string
+    {
+        return state.authorization.username;
+    }
+
 
 
     @Action(RegisterUser)

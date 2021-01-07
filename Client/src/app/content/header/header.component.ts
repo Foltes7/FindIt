@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Select } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { UserStore } from 'src/app/core/userState/user-state';
 import { UnsplashService } from 'src/app/shared/unsplash.service';
 
 @Component({
@@ -7,6 +10,9 @@ import { UnsplashService } from 'src/app/shared/unsplash.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
+  @Select(UserStore.userName)
+  public userName$: Observable<string>;
 
   user: any;
   constructor(private unsplash: UnsplashService) { }

@@ -8,6 +8,7 @@ import { NgxsModule } from '@ngxs/store';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { UserStore } from './core/userState/user-state';
 import { environment } from 'src/environments/environment';
+import { ProfileStore } from './profile/profileState/profile-state';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { environment } from 'src/environments/environment';
     ContentModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NgxsModule.forRoot([ UserStore], { developmentMode: !environment.production }),
+    NgxsModule.forRoot([ UserStore, ProfileStore], { developmentMode: !environment.production }),
     NgxsStoragePluginModule.forRoot({
       key: UserStore
     }),

@@ -5,6 +5,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IntercepterService } from './intercepters/intercepter.service';
 import { AuthService } from './services/auth.service';
 import { UnauthorizedInterceptor } from './intercepters/unauthorized.interceptor';
+import { ProfileService } from '../profile/services/profile.service';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { UnauthorizedInterceptor } from './intercepters/unauthorized.interceptor
       useClass: UnauthorizedInterceptor,
       multi: true,
     },
+    ProfileService
   ]
 })
 export class CoreModule { }
