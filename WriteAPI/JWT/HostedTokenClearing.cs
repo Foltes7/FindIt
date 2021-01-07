@@ -12,14 +12,10 @@ namespace JWT
     public class HostedTokenClearing : IHostedService, IDisposable
     {
         private Timer _timer;
-        private readonly IJwtAuthManager _jwtAuthManager;
-
+        private readonly IServiceScopeFactory serviceScopeFactory;
         public HostedTokenClearing(IServiceScopeFactory serviceScopeFactory)
         {
-            using (var scope = serviceScopeFactory.CreateScope())
-            {
-                _jwtAuthManager = scope.ServiceProvider.GetService<IJwtAuthManager>();
-            }
+            this.serviceScopeFactory = serviceScopeFactory;
         }
 
         public Task StartAsync(CancellationToken stoppingToken)
@@ -30,7 +26,11 @@ namespace JWT
 
         private void DoWork(object state)
         {
-            _jwtAuthManager.RemoveExpiredRefreshTokens(DateTime.Now);
+            using (var scope = serviceScopeFactory.CreateScope())
+            {
+                var _jwtAuthManager = scope.ServiceProvider.GetService<IJwtAuthManager>();
+                _jwtAuthManager.RemoveExpiredRefreshTokens(DateTime.Now).Wait();
+            }
         }
 
         public Task StopAsync(CancellationToken stoppingToken)

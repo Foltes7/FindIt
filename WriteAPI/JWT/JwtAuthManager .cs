@@ -43,6 +43,7 @@ namespace JWT
         // optional: clean up expired refresh tokens
         public async Task RemoveExpiredRefreshTokens(DateTime now)
         {
+            Console.WriteLine("Removing Tokens");
             var expiredTokens = await _refreshTokenRepostory.GetWhere(x => x.ExpireAt < now);
             foreach (var expiredToken in expiredTokens)
             {
