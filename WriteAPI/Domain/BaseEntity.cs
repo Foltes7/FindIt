@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Commands
+namespace Domain
 {
-    public class BaseCommandEntity
+    public class BaseEntity
     {
         public string Email { set; get; }
         public string UserName { set; get; }

@@ -1,4 +1,7 @@
-﻿using Domain.Commands.profile;
+﻿using BI.Services.profile;
+using Common.DTO.Profile;
+using Domain.Commands.profile;
+using Domain.Query.profile;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -30,6 +33,15 @@ namespace WriteAPI.Controllers
         {
             this.SetRequestClaims(command);
             await this._mediator.Send(command);
+        }
+
+        [HttpGet("{username}")]
+        public async Task<UserDTO> GetProfileById(string username)
+        {
+            var query = new GetUserProfileQuery();
+            this.SetRequestClaims(query);
+            query.GetByUsername = username;
+            return await this._mediator.Send(query);
         }
     }
 }

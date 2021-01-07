@@ -1,3 +1,5 @@
+using AutoMapper;
+using AutoMapperLib;
 using BI.Services.profile;
 using Domain.Commands.auth;
 using FluentValidation.AspNetCore;
@@ -40,6 +42,8 @@ namespace WriteAPI
             }));
 
             services.AddHostedService<HostedTokenClearing>();
+            
+            services.AddAutoMapper(typeof(UserProfile).Assembly);
 
 
             services.DataBase(Configuration);

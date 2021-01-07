@@ -1,4 +1,4 @@
-﻿using Domain.Commands;
+﻿using Domain;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace WriteAPI.Configuration
 
     public static class HttpContextHelper
     {
-        public static void SetRequestClaims<T>(this ControllerBase controller, T command) where T : BaseCommandEntity
+        public static void SetRequestClaims<T>(this ControllerBase controller, T command) where T : BaseEntity
         {
             var email = controller.User.Claims.FirstOrDefault(x => x.Type.Contains("emailaddress"))?.Value;
             var username = controller.User.Identity.Name;

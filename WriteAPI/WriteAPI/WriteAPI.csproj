@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AutoMapperLib\AutoMapperLib.csproj" />
     <ProjectReference Include="..\BI\BI.csproj" />
     <ProjectReference Include="..\Common\Common.csproj" />
     <ProjectReference Include="..\Context\Context.csproj" />

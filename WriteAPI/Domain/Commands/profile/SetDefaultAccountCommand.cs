@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Commands.profile
 {
-    public class SetDefaultAccountCommand : BaseCommandEntity, IRequest<Unit>
+    public class SetDefaultAccountCommand : BaseEntity, IRequest<Unit>
     {
     }
 }
