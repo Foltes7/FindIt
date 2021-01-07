@@ -1,6 +1,8 @@
+using BI.Services.profile;
 using Domain.Commands.auth;
 using FluentValidation.AspNetCore;
 using JWT;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -47,6 +49,8 @@ namespace WriteAPI
             services.AddControllers(opt => opt.Filters.Add(typeof(ValidationFilter)))
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginCommandValidator>())
                 .AddNewtonsoftJson();
+
+            services.AddMediatR(typeof(ProfileHandlerCommand));
 
             services.AddSwaggerGen(c =>
             {

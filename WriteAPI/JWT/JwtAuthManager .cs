@@ -78,6 +78,7 @@ namespace JWT
                 TokenString = GenerateRefreshTokenString(),
                 ExpireAt = now.AddMinutes(_jwtTokenConfig.RefreshTokenExpiration)
             };
+            await RemoveRefreshTokenByUserName(refreshToken.UserId);
             await _refreshTokenRepostory.Add(refreshToken);
             return new JwtAuthResult
             {

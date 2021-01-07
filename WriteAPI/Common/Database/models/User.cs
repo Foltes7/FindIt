@@ -7,5 +7,6 @@ namespace Common.Database.models
     {
         public string PhotoId { set; get; }
         public RefreshToken RefreshToken { set; get; }
+        public bool isBussinessAcc { set; get; }
     }
 }

@@ -44,7 +44,7 @@ namespace WriteAPI.Controllers
                 var check = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
                 if (check.Succeeded)
                 {
-                    var claims = new[] { new Claim(ClaimTypes.Name, request.UserName) };
+                    var claims = new[] { new Claim(ClaimTypes.Name, request.UserName), new Claim(ClaimTypes.Email, user.Email) };
                     var jwtResult = await _jwtAuthManager.GenerateTokens(user.Id, claims, DateTime.Now);
 
                     return Ok(new LoginResult

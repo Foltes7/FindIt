@@ -25,7 +25,7 @@ export class ProfileInProfileComponent implements OnInit {
     // this.unsplashService.getProfile().subscribe(x => this.user = x.user);
   }
 
-  async logOut()
+  async logOut(): Promise<void>
   {
     await this.authService.logout().toPromise();
     await this.store.dispatch(new LogOutUser()).toPromise();
