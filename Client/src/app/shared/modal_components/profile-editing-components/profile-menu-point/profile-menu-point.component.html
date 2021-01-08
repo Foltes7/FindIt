@@ -1,1 +1,39 @@
-<p>profile-menu-point works!</p>
+<form class="container">
+    <div class="first-info content">
+        <div class="photo-container">
+            <div class="photo" [ngClass]="{'without-photo-border': !user?.profile_image.large}">
+                <img *ngIf="user?.profile_image.large" [src]="user?.profile_image.large" />
+                <img class="default" *ngIf="!user?.profile_image.large" src="assets/images/default_user.svg">
+            </div>
+        </div>
+        <div class="inputs">
+            <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Name" name="name" >
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Username</mat-label>
+                <input matInput placeholder="Username" name="userName">
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <div class="second-info content">
+
+    </div>
+    <div class="divider"></div>
+    <div class="third-info content">
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" name="email" >
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Website</mat-label>
+            <input matInput placeholder="Website" name="website" >
+        </mat-form-field>
+    </div>
+    <div class="divider"></div>
+    <div class="description content">
+
+    </div>
+</form>

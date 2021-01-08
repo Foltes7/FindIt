@@ -13,6 +13,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
 import { ProfileEditingComponent } from './modal_components/profile-editing/profile-editing.component';
 import { SecurityMenuPointComponent } from './modal_components/profile-editing-components/security-menu-point/security-menu-point.component';
 import { ProfileMenuPointComponent } from './modal_components/profile-editing-components/profile-menu-point/profile-menu-point.component';
@@ -26,10 +28,10 @@ import { ProfileMenuPointComponent } from './modal_components/profile-editing-co
     CommonModule,
     MatDialogModule,
     FormsModule, ReactiveFormsModule,
-    MatInputModule, MatButtonModule
+    MatInputModule, MatButtonModule, MatAutocompleteModule
   ],
   exports: [SpinnerComponent, PostViewPipe, FormsModule, ReactiveFormsModule,
-    MatInputModule, MatButtonModule
+    MatInputModule, MatButtonModule, MatAutocompleteModule
   ],
   providers: [DialogService]
 })

@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileMenuPointComponent implements OnInit {
 
+  user:any;
   constructor() { }
 
   ngOnInit(): void {

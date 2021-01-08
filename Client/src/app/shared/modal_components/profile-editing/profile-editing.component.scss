@@ -24,7 +24,7 @@
                 justify-content: center;
                 align-items: center;
                 font-size: 1rem;
-                font-weight: 600;
+                font-weight: 400;
                 color: #4A4A4A;
             }
             &:hover{
@@ -42,6 +42,7 @@
             }
             .text{
                 color: #202020;
+                font-weight: 500;
             }
         }
         border-right: 1px solid $bottom-color-line;
