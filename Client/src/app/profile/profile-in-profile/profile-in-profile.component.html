@@ -22,7 +22,7 @@
     </div>
     <div class="buttons width-content">
         <div class="edit-section">
-            <button *ngIf="(profile$ | async).ownProfile"  mat-stroked-button>
+            <button *ngIf="(profile$ | async).ownProfile" (click)="openProfileEditing()"  mat-stroked-button>
                 Edit profile
             </button>
         </div>

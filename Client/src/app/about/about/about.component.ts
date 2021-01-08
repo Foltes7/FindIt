@@ -32,7 +32,6 @@ export class AboutComponent implements OnInit {
       },
       panelClass: 'custom-dialog-class',
       disableClose: true
-      // hasBackdrop: false
     };
     this.dialogService.openDialog(SignUPComponent, config);
   }

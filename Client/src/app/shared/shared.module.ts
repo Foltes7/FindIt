@@ -13,9 +13,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import { ProfileEditingComponent } from './modal_components/profile-editing/profile-editing.component';
 
 @NgModule({
-  declarations: [SpinnerComponent, PostViewPipe, SignUPComponent, SignINComponent, ModalTitleComponent],
+  declarations: [SpinnerComponent, PostViewPipe, SignUPComponent, SignINComponent, ModalTitleComponent, ProfileEditingComponent],
   imports: [
     CommonModule,
     MatDialogModule,
