@@ -14,10 +14,12 @@
             </div>
             <div class="buttons">
                 <div *ngIf="!adminView" class="user-view">
-                    <div class="button-save mr-help button-outline">
-                        <p>Save</p>
-                    </div>
-                    <div class="button-contact">Contact</div>
+                    <button class="button-save mr-help" mat-stroked-button>
+                        Save
+                    </button>
+                    <button class="button-contact" mat-flat-button>
+                        Contact
+                    </button>
                 </div>
                 <div *ngIf="adminView" class="admin-view">
 

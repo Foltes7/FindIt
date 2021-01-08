@@ -53,23 +53,14 @@
                 }
 
                 .button-save {
-                    height: 28px;
                     width: 116px;
                 }
 
                 .button-contact {
-                    cursor: pointer;
-                    outline: none;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    height: 28px;
                     width: 116px;
-                    background-color: #21A7FF;
-                    color: white;
-                    font-weight: bold;
+                    background-color: $blue-color;
                     margin-right: 35px;
-                    border-radius: 3px;
+                    color: white;
                 }
             }
         }

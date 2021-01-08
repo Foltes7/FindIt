@@ -11,15 +11,20 @@ import { ModalTitleComponent } from './modal_components/modal-title/modal-title.
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [SpinnerComponent, PostViewPipe, SignUPComponent, SignINComponent, ModalTitleComponent],
   imports: [
     CommonModule,
     MatDialogModule,
-    FormsModule, ReactiveFormsModule
+    FormsModule, ReactiveFormsModule,
+    MatInputModule, MatButtonModule
   ],
-  exports: [SpinnerComponent, PostViewPipe, FormsModule, ReactiveFormsModule],
+  exports: [SpinnerComponent, PostViewPipe, FormsModule, ReactiveFormsModule,
+    MatInputModule, MatButtonModule
+  ],
   providers: [DialogService]
 })
 export class SharedModule { }

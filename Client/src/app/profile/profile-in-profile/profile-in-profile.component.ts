@@ -38,7 +38,7 @@ export class ProfileInProfileComponent implements OnInit {
     this.router.navigate(['/about']);
   }
 
-  setBussinessAccount(): void
+  setBussinessAccount($event): void
   {
     this.store.dispatch(SetBussinessAccount);
   }

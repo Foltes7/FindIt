@@ -22,33 +22,41 @@
     </div>
     <div class="buttons width-content">
         <div class="edit-section">
-            <div *ngIf="(profile$ | async).ownProfile" class="edit-profile-button button-outline">
-                <p>Edit profile</p>
-            </div>
+            <button *ngIf="(profile$ | async).ownProfile"  mat-stroked-button>
+                Edit profile
+            </button>
         </div>
         <div *ngIf="!(profile$ | async).ownProfile" class="user-section">
-            <div class="contact-button button-outline">
-                <p>Contact</p>
-                <i class="icon-contact"></i>
-            </div>
-            <div *ngIf="!followed" class="follow-button button-light">
-                <p>Follow</p>
-                <i class="icon-like"></i>
-            </div>
-            <div *ngIf="followed" class="unfollow-button button-outline">
-                <p>Unfollow</p>
-            </div>
+            <button class="contact-button"  mat-stroked-button>
+                <div class="content-icons">
+                    <p>Contact</p>
+                    <i class="icon-contact"></i>
+                </div>
+            </button>
+
+            <button *ngIf="!followed" mat-stroked-button>
+                <div class="content-icons color-blue">
+                    <p>Follow</p>
+                    <i class="icon-like"></i>
+                </div>
+            </button>
+
+            <button *ngIf="followed" mat-stroked-button>
+                <div class="content-icons">
+                    <p>Unfollow</p>
+                </div>
+            </button>
         </div>
     </div>
     <div class="divider width-content">
     </div>
     <div *ngIf="(profile$ | async).ownProfile" class="business-container width-content">
-        <div (click)="setBussinessAccount()" *ngIf="!(profile$ | async).isBussinessAcc" class="button-business button-outline">
-            <p>Set business account</p>
-        </div>
-        <div (click)="setDefaultAccount()" *ngIf="(profile$ | async).isBussinessAcc" class="button-default button-outline">
-            <p>Set default account</p>
-        </div>
+        <button (click)="setBussinessAccount($event)" *ngIf="!(profile$ | async).isBussinessAcc" class="button-business" mat-stroked-button>
+            Set business account
+        </button>
+        <button (click)="setDefaultAccount()" *ngIf="(profile$ | async).isBussinessAcc" class="button-default" mat-stroked-button>
+            Set default account
+        </button>
     </div>
     <div *ngIf="(profile$ | async).ownProfile" class="divider width-content">
     </div>
@@ -69,8 +77,8 @@
     <div class="divider width-content">
     </div>
     <div *ngIf="(profile$ | async).ownProfile" class="logout">
-        <div (click)="logOut()" class="button-logout button-outline">
-            <p>Log out</p>
-        </div>
+        <button (click)="logOut()"  mat-stroked-button>
+            Log out
+        </button>
     </div>
 </div>

@@ -89,9 +89,6 @@
             display: flex;
             justify-content: center;
             width: 160px;
-
-            .edit-profile-button {
-            }
         }
 
         .user-section {
@@ -101,31 +98,8 @@
 
             .contact-button {
                 margin-right: 30px;
-
-                i {
-                    margin-left: 8px;
-                    margin-bottom: 4px;
-                }
-
-                i::before {
-                    font-size: 0.75rem;
-                    color: $active-header-icon-color;
-                }
             }
 
-            .follow-button {
-                i {
-                    margin-left: 8px;
-                    margin-bottom: 4px;
-                }
-
-                i::before {
-                    font-size: 0.75rem;
-                    color: white;
-                }
-            }
-            .unfollow-button {
-            }
         }
     }
 
@@ -138,11 +112,9 @@
 
     .business-container {
         .button-business {
-            margin-right: 30px;
             width: 200px;
         }
         .button-default {
-            margin-right: 30px;
             width: 200px;
         }
     }
@@ -196,7 +168,5 @@
         margin-top: 20px;
         display: flex;
         justify-content: center;
-        .button-logout{
-        }
     }
 }
