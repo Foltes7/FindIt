@@ -1,0 +1,49 @@
+@import 'variables';
+
+.container{
+    height: calc(100% - 35px);
+    display: flex;
+    .sidebar{
+        height: 100%;
+        width: 180px;
+        .block{
+            display: flex;
+            height: 55px;
+            width: 100%;
+            border-bottom: 1px solid $bottom-color-line;
+            cursor: pointer;
+            .line{
+                height: 100%;
+                width: 3px;
+                background-color:white;
+            }
+            .text{
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 1rem;
+                font-weight: 600;
+                color: #4A4A4A;
+            }
+            &:hover{
+                .line{
+                    background-color: #c0c0c0;
+                }
+                .text{
+                    color: #202020;
+                }
+            }
+        }
+        .active{
+            .line{
+                background-color: #202020 !important;
+            }
+            .text{
+                color: #202020;
+            }
+        }
+        border-right: 1px solid $bottom-color-line;
+    }
+}

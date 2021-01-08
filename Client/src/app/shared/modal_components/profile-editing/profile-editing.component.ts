@@ -1,6 +1,12 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { EnumUtil } from '../../enum-util';
 import { DialogData } from '../../models/DialogData';
+
+export enum SidebarProfileEditing{
+  Profile = 'Profile',
+  Security = 'Security'
+}
 
 @Component({
   selector: 'app-profile-editing',
@@ -9,11 +15,15 @@ import { DialogData } from '../../models/DialogData';
 })
 export class ProfileEditingComponent implements OnInit {
 
+  menu = EnumUtil.getEnumValues(SidebarProfileEditing);
+  active = EnumUtil.getEnumValueByKey(SidebarProfileEditing, SidebarProfileEditing.Profile);
+
   constructor(    
     public dialogRef: MatDialogRef<ProfileEditingComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,) { }
 
   ngOnInit(): void {
+
   }
 
   
@@ -22,4 +32,7 @@ export class ProfileEditingComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  setActive(point: string){
+    this.active = point;
+  }
 }

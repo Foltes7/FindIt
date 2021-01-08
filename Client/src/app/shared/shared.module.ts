@@ -14,9 +14,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { ProfileEditingComponent } from './modal_components/profile-editing/profile-editing.component';
+import { ProfileComponent } from './modal_components/profile-editing-components/profile/profile.component';
+import { SecurityComponent } from './modal_components/profile-editing-components/security/security.component';
 
 @NgModule({
-  declarations: [SpinnerComponent, PostViewPipe, SignUPComponent, SignINComponent, ModalTitleComponent, ProfileEditingComponent],
+  declarations: [SpinnerComponent, PostViewPipe, SignUPComponent, SignINComponent, ModalTitleComponent, ProfileEditingComponent, ProfileComponent, SecurityComponent],
   imports: [
     CommonModule,
     MatDialogModule,

@@ -1,1 +1,13 @@
 <app-modal-title (closeEvent)="close()" [title]="data.title"></app-modal-title>
+<div class="container">
+    <div class="sidebar">
+        <div *ngFor="let item of menu" (click)="setActive(item)" class="block" [ngClass]="{'active': active === item}">
+            <div class="line"></div>
+            <div class="text">
+                <p>{{item}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+    </div>
+</div>
