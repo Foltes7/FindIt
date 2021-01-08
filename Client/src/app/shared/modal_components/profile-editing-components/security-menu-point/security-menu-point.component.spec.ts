@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SecurityComponent } from './security.component';
+import { SecurityMenuPointComponent } from './security-menu-point.component';
 
-describe('SecurityComponent', () => {
-  let component: SecurityComponent;
-  let fixture: ComponentFixture<SecurityComponent>;
+describe('SecurityMenuPointComponent', () => {
+  let component: SecurityMenuPointComponent;
+  let fixture: ComponentFixture<SecurityMenuPointComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SecurityComponent ]
+      declarations: [ SecurityMenuPointComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SecurityComponent);
+    fixture = TestBed.createComponent(SecurityMenuPointComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

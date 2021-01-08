@@ -9,5 +9,9 @@
         </div>
     </div>
     <div class="content">
+        <container-element [ngSwitch]="switch_expression">
+            <some-element *ngSwitchCase="match_expression_1"></some-element>
+            <div *ngSwitchDefault></div>
+         </container-element>
     </div>
 </div>
