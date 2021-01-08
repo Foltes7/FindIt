@@ -5,52 +5,20 @@
     justify-content: center;
 
     .form{
+        display: flex;
+        flex-direction: column;
         margin-top: 20px;
         margin-bottom: 40px;
         width: calc(85%);
+
+        mat-form-field{
+            margin-top: 10px;
+        }
 
         .form-group{
             margin-top: 10px;
             display: flex;
             flex-direction: column;
-
-
-            label{
-                font-size: 0.875rem;
-                font-weight: 700;
-                color: rgb(43 43 43 / 87%);
-            }
-            .input-value{
-                display: flex;
-                flex-wrap: wrap;
-                input{
-                    flex-basis: 90%;
-                }
-                .validator{
-                    height: 39px;
-                    flex-basis: 10%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    .dot{
-                        height: 15px;
-                        width: 15px;
-                        border-radius: 50%;
-                        background-color: #f2f2f2;
-                    }
-                }
-                .message{
-                    height: 19px;
-                    display: flex;
-                    justify-content: flex-end;
-                    flex-basis: 100%;
-                    p{
-                        margin-right: calc(16%);
-                        font-size: 0.875rem;
-                        color: #4d4d4d;
-                    }
-                }
-            }
         }
         .divider{
             margin-top: 15px;

@@ -1,61 +1,48 @@
 <app-modal-title (closeEvent)="close()" [title]="data.title"></app-modal-title>
 <div class="container">
     <form [formGroup]="mainForm" class="form">
-        <div class="form-group">
-            <label>Username</label>
-            <div class="input-value">
-                <input class="default-input" placeholder="Username" name="userName" formControlName="userName" />
-                <div class="validator">
-                    <div class="dot" [ngClass]="{ 'red-dot': userName.hasError('username'), 
-                    'green-dot' : userName.valid }"></div>
-                </div>
-                <div class="message">
-                    <p *ngIf="userName.hasError('username')">User with same username exist</p>
-                    <p *ngIf="userName.invalid && userName.dirty && !userName.hasError('username')">Min username length 4</p>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label>Email</label>
-            <div class="input-value">
-                <input class="default-input" placeholder="Email" name="email" formControlName="email" />
-                <div class="validator">
-                    <div class="dot" [ngClass]="{ 'red-dot': email.invalid && email.dirty, 
-                    'green-dot' : email.valid }"></div>
-                </div>
-                <div class="message">
-                    <p *ngIf="email.invalid && email.dirty">Invalid email address</p>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label>Password</label>
-            <div class="input-value">
-                <input class="default-input" placeholder="Password" type="password" name="password"
-                    formControlName="password" />
-                <div class="validator">
-                    <div class="dot" [ngClass]="{ 'red-dot': password.invalid && password.dirty, 
-                    'green-dot' : password.valid }"></div>
-                </div>
-                <div class="message">
-                    <p *ngIf="password.invalid && password.dirty">Min password length 6 max 20</p>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label>Confirm password</label>
-            <div class="input-value">
-                <input class="default-input" placeholder="Confirm password" type="password" name="password"
-                formControlName="confirmPassword" />
-                <div class="validator">
-                    <div class="dot" [ngClass]="{ 'red-dot': confirmPass.invalid && confirmPass.dirty, 
-                    'green-dot' : confirmPass.valid }"></div>
-                </div>
-                <div class="message">
-                    <p *ngIf="mainForm.hasError('mismatch') && confirmPass.dirty" >Passwords do not match</p>
-                </div>
-            </div>
-        </div>
+
+        <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input matInput placeholder="Username" name="userName" formControlName="userName">
+            <mat-error *ngIf="userName.errors?.username">
+                User with same username exist
+            </mat-error>
+            <mat-error *ngIf="userName.errors?.minlength">
+                Min length 4
+            </mat-error>
+            <mat-error *ngIf="userName.errors?.maxlength">
+                Max length 45
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" name="email" formControlName="email">
+            <mat-error *ngIf="email.errors?.email">
+                Invalid email address
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Password" type="password" name="password" formControlName="password">
+            <mat-error *ngIf="password.errors?.minlength">
+                Min length 4
+            </mat-error>
+            <mat-error *ngIf="password.errors?.maxlength">
+                Max length 45
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Confirm password</mat-label>
+            <input matInput placeholder="Confirm password" type="password" name="password" formControlName="confirmPassword">
+            <mat-error *ngIf="mainForm.errors?.mismatch">
+                Passwords do not match
+            </mat-error>
+        </mat-form-field>
+
         <div class="divider"></div>
         <div class="form-group center">
             <button [disabled]="mainForm.invalid" (click)="signUp()" class="button-signIn" mat-stroked-button>
@@ -63,4 +50,5 @@
             </button>
         </div>
     </form>
+
 </div>

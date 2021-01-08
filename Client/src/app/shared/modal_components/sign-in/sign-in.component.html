@@ -1,18 +1,27 @@
 <app-modal-title (closeEvent)="close()" [title]="data.title"></app-modal-title>
 <div class="container">
     <form [formGroup]="mainForm" class="form">
-        <div class="form-group">
-            <label>Username</label>
-            <div class="input-value">
-                <input class="default-input" placeholder="Username" name="userName" formControlName="userName" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label>Password</label>
-            <div class="input-value">
-                <input class="default-input" placeholder="Password" type="password" name="password" formControlName="password" />
-            </div>
-        </div>
+        <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input matInput placeholder="Username" name="userName" formControlName="userName">
+            <mat-error *ngIf="userName.errors?.minlength">
+                Min length 4
+            </mat-error>
+            <mat-error *ngIf="userName.errors?.maxlength">
+                Max length 45
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Password" type="password" name="password" formControlName="password">
+            <mat-error *ngIf="password.errors?.minlength">
+                Min length 6
+            </mat-error>
+            <mat-error *ngIf="password.errors?.maxlength">
+                Max length 20
+            </mat-error>
+        </mat-form-field>
         <div class="divider"></div>
         <div class="form-group center">
             <button [disabled]="mainForm.invalid" (click)="signIn()" class="button-signIn" mat-stroked-button>
