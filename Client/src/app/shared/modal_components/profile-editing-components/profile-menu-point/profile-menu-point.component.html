@@ -20,37 +20,44 @@
     <div class="divider"></div>
     <div class="second-info content">
         <mat-form-field>
-            <input type="text"
-                   matInput
-                   placeholder="States Group"
-                   formControlName="stateGroup"
-                   [matAutocomplete]="autoGroup">
-              <mat-autocomplete #autoGroup="matAutocomplete">
+            <input type="text" matInput placeholder="States Group" formControlName="stateGroup"
+                [matAutocomplete]="autoGroup">
+            <mat-autocomplete #autoGroup="matAutocomplete">
                 <mat-optgroup *ngFor="let group of stateGroupOptions | async" [label]="group.letter">
-                  <mat-option *ngFor="let name of group.names" [value]="name">
-                    {{name}}
-                  </mat-option>
-              </mat-optgroup>
+                    <mat-option *ngFor="let name of group.names" [value]="name">
+                        {{name}}
+                    </mat-option>
+                </mat-optgroup>
             </mat-autocomplete>
-          </mat-form-field>
-          <mat-form-field>
+        </mat-form-field>
+        <mat-form-field>
             <mat-label>Gender</mat-label>
-            <input matInput placeholder="Gender" name="gender" >
+            <input matInput placeholder="Gender" name="gender">
         </mat-form-field>
     </div>
     <div class="divider"></div>
     <div class="third-info content">
         <mat-form-field>
             <mat-label>Email</mat-label>
-            <input matInput placeholder="Email" name="email" >
+            <input matInput placeholder="Email" name="email">
         </mat-form-field>
         <mat-form-field>
             <mat-label>Website</mat-label>
-            <input matInput placeholder="Website" name="website" >
+            <input matInput placeholder="Website" name="website">
         </mat-form-field>
     </div>
     <div class="divider"></div>
     <div class="description content">
-
+        <mat-form-field>
+            <mat-label>Description</mat-label>
+            <textarea matInput cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="1"
+            cdkAutosizeMaxRows="5"></textarea>
+        </mat-form-field>
+    </div>
+    <div class="divider"></div>
+    <div class="submit-button">
+        <button mat-flat-button color="primary">Update</button>
     </div>
 </form>

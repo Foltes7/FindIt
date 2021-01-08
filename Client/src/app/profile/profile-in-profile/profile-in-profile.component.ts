@@ -56,7 +56,7 @@ export class ProfileInProfileComponent implements OnInit {
   {
     const config: MatDialogConfig =  {
       width: '950px',
-      height: '85%',
+      height: '72%',
       maxHeight: '100%',
       data: {
         title: 'Profile editing'

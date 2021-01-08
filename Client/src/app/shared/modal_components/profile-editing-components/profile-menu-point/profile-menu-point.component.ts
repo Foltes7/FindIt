@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -21,6 +22,7 @@ export const _filter = (opt: string[], value: string): string[] => {
 })
 export class ProfileMenuPointComponent implements OnInit {
 
+  
   public mainForm: FormGroup = new FormGroup({
     userName: new FormControl('',  [Validators.required, Validators.minLength(4), Validators.maxLength(45)]),
     name: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(45) ]),
