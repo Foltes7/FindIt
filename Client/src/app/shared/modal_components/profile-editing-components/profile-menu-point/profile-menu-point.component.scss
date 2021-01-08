@@ -42,6 +42,13 @@
             justify-content: space-between;
         }
     }
+    .second-info{
+        display: flex;
+        justify-content: space-between;
+        mat-form-field{
+            flex-basis: 46%;
+        }
+    }
     .third-info{
         display: flex;
         justify-content: space-between;

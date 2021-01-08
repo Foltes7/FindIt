@@ -1,4 +1,4 @@
-<form class="container">
+<form [formGroup]="mainForm" class="container">
     <div class="first-info content">
         <div class="photo-container">
             <div class="photo" [ngClass]="{'without-photo-border': !user?.profile_image.large}">
@@ -9,17 +9,34 @@
         <div class="inputs">
             <mat-form-field>
                 <mat-label>Name</mat-label>
-                <input matInput placeholder="Name" name="name" >
+                <input matInput placeholder="Name" name="name" formControlName="name">
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Username</mat-label>
-                <input matInput placeholder="Username" name="userName">
+                <input matInput placeholder="Username" name="userName" formControlName="userName">
             </mat-form-field>
         </div>
     </div>
     <div class="divider"></div>
     <div class="second-info content">
-
+        <mat-form-field>
+            <input type="text"
+                   matInput
+                   placeholder="States Group"
+                   formControlName="stateGroup"
+                   [matAutocomplete]="autoGroup">
+              <mat-autocomplete #autoGroup="matAutocomplete">
+                <mat-optgroup *ngFor="let group of stateGroupOptions | async" [label]="group.letter">
+                  <mat-option *ngFor="let name of group.names" [value]="name">
+                    {{name}}
+                  </mat-option>
+              </mat-optgroup>
+            </mat-autocomplete>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Gender</mat-label>
+            <input matInput placeholder="Gender" name="gender" >
+        </mat-form-field>
     </div>
     <div class="divider"></div>
     <div class="third-info content">
