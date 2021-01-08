@@ -46,4 +46,8 @@
         }
         border-right: 1px solid $bottom-color-line;
     }
+    .content{
+        width: calc(100% - 180px);
+        height: 100%;
+    }
 }

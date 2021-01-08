@@ -15,6 +15,7 @@ export enum SidebarProfileEditing{
 })
 export class ProfileEditingComponent implements OnInit {
 
+  menuEnum = SidebarProfileEditing;
   menu = EnumUtil.getEnumValues(SidebarProfileEditing);
   active = EnumUtil.getEnumValueByKey(SidebarProfileEditing, SidebarProfileEditing.Profile);
 
