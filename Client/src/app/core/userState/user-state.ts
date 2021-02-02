@@ -51,13 +51,14 @@ export class UserStore {
 
 
     @Action(RegisterUser)
-    async registerUser({ setState, dispatch }: StateContext<UserState>, { username, confirmPassword, pass, email }: RegisterUser)
+    async registerUser({ setState, dispatch }: StateContext<UserState>, { username, confirmPassword, pass, email, name }: RegisterUser)
+    : Promise<void>
     {
-        await this.authService.register(username, pass, confirmPassword, email).toPromise();
+        await this.authService.register(username, name, pass, confirmPassword, email).toPromise();
     }
 
     @Action(CheckStatusForTokenUpdating)
-    updateToken({ getState, dispatch }: StateContext<UserState>)
+    updateToken({ getState, dispatch }: StateContext<UserState>): void
     {
         const flag = getState().authorization !== undefined && getState().authorization.success === true;
         if (flag && (!this.subscribe || this.subscribe.closed)){
@@ -69,6 +70,7 @@ export class UserStore {
 
     @Action(RefreshToken)
     async refreshToken({ getState, patchState }: StateContext<UserState>)
+    : Promise<void>
     {
         const token = getState().authorization.refreshToken;
         const resp = await this.authService.refreshToken(token).toPromise();
@@ -86,6 +88,7 @@ export class UserStore {
 
     @Action(LoginUser)
     async loginUser({ patchState, getState, dispatch }: StateContext<UserState>, { username, pass }: LoginUser)
+    : Promise<void>
     {
         const resp = await this.authService.login(username, pass).toPromise();
         if (resp.success)
@@ -102,7 +105,7 @@ export class UserStore {
     }
 
     @Action(LogOutUser)
-    async logOut({ patchState, getState }: StateContext<UserState>)
+    logOut({ patchState, getState }: StateContext<UserState>): void
     {
         this.subscribe?.unsubscribe();
         patchState({

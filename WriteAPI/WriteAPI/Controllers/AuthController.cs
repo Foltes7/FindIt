@@ -66,7 +66,7 @@ namespace WriteAPI.Controllers
         [HttpPost("registration")]
         public async Task<IActionResult> Registration(RegistrationCommand command)
         {
-            User user = new User { Email = command.Email, UserName = command.UserName };
+            User user = new User { Email = command.Email, UserName = command.UserName, Name = command.Name };
 
             var result = await _userManager.CreateAsync(user, command.Password);
             if (result.Succeeded)

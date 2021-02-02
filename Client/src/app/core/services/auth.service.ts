@@ -11,10 +11,11 @@ export class AuthService {
   constructor(private httpClient: HttpClient) { }
 
 
-  register(username: string, pass: string, confrimPass: string, email: string): Observable<any>
+  register(username: string, name: string, pass: string, confrimPass: string, email: string): Observable<any>
   {
     const obj = {
       username,
+      name,
       password: pass,
       confirmPassword: confrimPass,
       email

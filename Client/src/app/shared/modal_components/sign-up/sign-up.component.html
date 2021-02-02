@@ -3,6 +3,17 @@
     <form [formGroup]="mainForm" class="form">
 
         <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Name" name="name" formControlName="name">
+            <mat-error *ngIf="name.errors?.minlength">
+                Min length 4
+            </mat-error>
+            <mat-error *ngIf="name.errors?.maxlength">
+                Max length 50
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
             <mat-label>Username</mat-label>
             <input matInput placeholder="Username" name="userName" formControlName="userName">
             <mat-error *ngIf="userName.errors?.username">
@@ -38,7 +49,7 @@
         <mat-form-field>
             <mat-label>Confirm password</mat-label>
             <input matInput placeholder="Confirm password" type="password" name="password" formControlName="confirmPassword">
-            <mat-error *ngIf="mainForm.errors?.mismatch">
+            <mat-error *ngIf="confirmPass.hasError('mismatch')">
                 Passwords do not match
             </mat-error>
         </mat-form-field>

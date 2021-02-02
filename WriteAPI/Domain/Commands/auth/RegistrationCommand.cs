@@ -11,6 +11,9 @@ namespace Domain.Commands.auth
 {
     public class RegistrationCommand
     {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
         [JsonProperty("username")]
         public string UserName { get; set; }
 
@@ -28,6 +31,7 @@ namespace Domain.Commands.auth
     {
         public RegistrationCommandValidator()
         {
+            RuleFor(x => x.Name).NotEmpty().Length(4, 50);
             RuleFor(x => x.UserName).NotEmpty().Length(4, 50);
             RuleFor(x => x.Password).Length(6, 20);
             RuleFor(x => x.ConfirmPassword).Equal(z => z.Password);

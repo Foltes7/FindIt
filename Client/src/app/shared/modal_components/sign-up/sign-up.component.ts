@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { LoginUser, RegisterUser } from 'src/app/core/userState/user-actions';
-import { passwordsMatchValidator, passwordsValidators, nicknameValidator } from '../../helpes/form-variables';
+import { passwordsMatchValidator, passwordsValidators, nicknameValidator, usernameValidator } from '../../helpes/form-variables';
 import { DialogData } from '../../models/DialogData';
 
 @Component({
@@ -29,6 +29,7 @@ export class SignUPComponent implements OnInit, OnDestroy, AfterViewInit {
 
 
   public mainForm: FormGroup = new FormGroup({
+    name: new FormControl('',  usernameValidator),
     userName: new FormControl('',  nicknameValidator),
     password: new FormControl('', passwordsValidators),
     confirmPassword: new FormControl('', passwordsValidators),
@@ -69,6 +70,7 @@ export class SignUPComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
+  get name(): AbstractControl { return this.mainForm.get('name'); }
   get userName(): AbstractControl { return this.mainForm.get('userName'); }
   get email(): AbstractControl { return this.mainForm.get('email'); }
   get password(): AbstractControl { return this.mainForm.get('password'); }
@@ -76,6 +78,7 @@ export class SignUPComponent implements OnInit, OnDestroy, AfterViewInit {
 
   async signUp(): Promise<void>
   {
+    const name = this.name.value;
     const username = this.userName.value;
     const password = this.password.value;
     const confirm = this.password.value;
@@ -83,7 +86,7 @@ export class SignUPComponent implements OnInit, OnDestroy, AfterViewInit {
     const resp = await this.authService.validateUserNameQuery(username).toPromise();
     if (resp)
     {
-      await this.store.dispatch(new RegisterUser(username, password, confirm, email)).toPromise();
+      await this.store.dispatch(new RegisterUser(username, name, password, confirm, email)).toPromise();
       await this.store.dispatch(new LoginUser(username, password)).toPromise();
       this.close();
       this.router.navigate(['/']);
