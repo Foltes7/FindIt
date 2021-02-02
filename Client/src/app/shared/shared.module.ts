@@ -15,24 +15,26 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {TextFieldModule} from '@angular/cdk/text-field';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { ProfileEditingComponent } from './modal_components/profile-editing/profile-editing.component';
+// tslint:disable-next-line: max-line-length
 import { SecurityMenuPointComponent } from './modal_components/profile-editing-components/security-menu-point/security-menu-point.component';
 import { ProfileMenuPointComponent } from './modal_components/profile-editing-components/profile-menu-point/profile-menu-point.component';
 
 
 @NgModule({
-  declarations: [SpinnerComponent, PostViewPipe, SignUPComponent, SignINComponent, ModalTitleComponent, 
+  declarations: [SpinnerComponent, PostViewPipe, SignUPComponent, SignINComponent, ModalTitleComponent,
     ProfileEditingComponent, SecurityMenuPointComponent, ProfileMenuPointComponent
   ],
   imports: [
     CommonModule,
     MatDialogModule,
     FormsModule, ReactiveFormsModule,
-    MatInputModule, MatButtonModule, MatAutocompleteModule, TextFieldModule
+    MatInputModule, MatButtonModule, MatAutocompleteModule, TextFieldModule, MatSnackBarModule
   ],
   exports: [SpinnerComponent, PostViewPipe, FormsModule, ReactiveFormsModule,
-    MatInputModule, MatButtonModule, MatAutocompleteModule, TextFieldModule 
+    MatInputModule, MatButtonModule, MatAutocompleteModule, TextFieldModule, MatSnackBarModule
   ],
   providers: [DialogService]
 })

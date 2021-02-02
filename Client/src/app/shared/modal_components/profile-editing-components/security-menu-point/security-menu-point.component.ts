@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -28,7 +29,8 @@ export class SecurityMenuPointComponent implements OnInit, OnDestroy {
   get confirmPassword(): AbstractControl { return this.mainForm.get('confirmPassword'); }
 
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+              private snackBar: MatSnackBar) { }
 
   ngOnDestroy(): void {
     this.destroy.next();
@@ -49,10 +51,10 @@ export class SecurityMenuPointComponent implements OnInit, OnDestroy {
     {
       this.closeWindow.emit();
     }else{
-      if (resp.message === 'Incorrect password')
-      {
-        console.log('incr'); // TODO HANDLER PASSWORD ERROR
-      }
+      this.snackBar.open(resp.message, 'Dismiss', {
+        horizontalPosition: 'right'
+      });
+      this.mainForm.reset();
     }
   }
 
