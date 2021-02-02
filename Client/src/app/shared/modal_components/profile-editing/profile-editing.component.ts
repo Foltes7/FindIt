@@ -5,7 +5,7 @@ import { DialogData } from '../../models/DialogData';
 
 export enum SidebarProfileEditing{
   Profile = 'Profile',
-  Security = 'Security'
+  Security = 'Change password'
 }
 
 @Component({
@@ -19,15 +19,15 @@ export class ProfileEditingComponent implements OnInit {
   menu = EnumUtil.getEnumValues(SidebarProfileEditing);
   active = EnumUtil.getEnumValueByKey(SidebarProfileEditing, SidebarProfileEditing.Profile);
 
-  constructor(    
+  constructor(
     public dialogRef: MatDialogRef<ProfileEditingComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,) { }
+    @Inject(MAT_DIALOG_DATA) public data: DialogData, ) { }
 
   ngOnInit(): void {
 
   }
 
-  
+
   close(): void
   {
     this.dialogRef.close();

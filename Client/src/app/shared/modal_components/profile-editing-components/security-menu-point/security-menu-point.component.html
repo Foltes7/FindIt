@@ -1,1 +1,34 @@
-<p>security-menu-point works!</p>
+<form [formGroup]="mainForm" class="container">
+    <mat-form-field>
+        <mat-label>Old password</mat-label>
+        <input matInput placeholder="Old Password" type="password" name="oldPassword" formControlName="oldPassword">
+        <mat-error *ngIf="oldPassword.errors?.minlength">
+            Min length 6
+        </mat-error>
+        <mat-error *ngIf="oldPassword.errors?.maxlength">
+            Max length 20
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>New password</mat-label>
+        <input matInput placeholder="New password" type="password" name="newPassword" formControlName="newPassword">
+        <mat-error *ngIf="newPassword.errors?.minlength">
+            Min length 6
+        </mat-error>
+        <mat-error *ngIf="newPassword.errors?.maxlength">
+            Max length 20
+        </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field>
+        <mat-label>Confirm password</mat-label>
+        <input matInput placeholder="Confirm password" type="password" name="confirmPassword" formControlName="confirmPassword">
+        <mat-error *ngIf="confirmPassword.hasError('mismatch')">
+            Passwords do not match
+        </mat-error>
+    </mat-form-field>
+    <div class="update-button">
+        <button [disabled]="mainForm.invalid || mainForm.untouched" mat-flat-button color="primary">Update</button>
+    </div>
+</form>

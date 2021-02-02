@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { LoginUser, RegisterUser } from 'src/app/core/userState/user-actions';
+import { passwordsMatchValidator, passwordsValidators, nicknameValidator } from '../../helpes/form-variables';
 import { DialogData } from '../../models/DialogData';
 
 @Component({
@@ -28,11 +29,11 @@ export class SignUPComponent implements OnInit, OnDestroy, AfterViewInit {
 
 
   public mainForm: FormGroup = new FormGroup({
-    userName: new FormControl('',  [Validators.required, Validators.minLength(4), Validators.maxLength(45)]),
-    password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20) ]),
-    confirmPassword: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20) ]),
+    userName: new FormControl('',  nicknameValidator),
+    password: new FormControl('', passwordsValidators),
+    confirmPassword: new FormControl('', passwordsValidators),
     email: new FormControl('', [Validators.required, Validators.email]),
-  }, this.passwordsMatchValidator);
+  }, (form) => passwordsMatchValidator(form, 'password', 'confirmPassword'));
 
   ngAfterViewInit(): void {
 
@@ -43,12 +44,6 @@ export class SignUPComponent implements OnInit, OnDestroy, AfterViewInit {
     setTimeout(() => this.userNameValidate());
   }
 
-  private passwordsMatchValidator(form: FormGroup) {
-    if (form.get('password') && form.get('confirmPassword')) {
-        return form.get('password').value === form.get('confirmPassword').value ? null : { mismatch: true };
-    }
-    return null;
-}
 
   userNameValidate(): void
   {
@@ -75,7 +70,6 @@ export class SignUPComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   get userName(): AbstractControl { return this.mainForm.get('userName'); }
-
   get email(): AbstractControl { return this.mainForm.get('email'); }
   get password(): AbstractControl { return this.mainForm.get('password'); }
   get confirmPass(): AbstractControl { return this.mainForm.get('confirmPassword'); }

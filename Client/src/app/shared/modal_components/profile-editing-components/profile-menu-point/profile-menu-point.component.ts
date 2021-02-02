@@ -1,8 +1,8 @@
-import { CdkTextareaAutosize } from '@angular/cdk/text-field';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { nicknameValidator, usernameValidator } from 'src/app/shared/helpes/form-variables';
 
 export interface StateGroup {
   letter: string;
@@ -22,15 +22,15 @@ export const _filter = (opt: string[], value: string): string[] => {
 })
 export class ProfileMenuPointComponent implements OnInit {
 
-  
+
   public mainForm: FormGroup = new FormGroup({
-    userName: new FormControl('',  [Validators.required, Validators.minLength(4), Validators.maxLength(45)]),
-    name: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(45) ]),
+    userName: new FormControl('', nicknameValidator),
+    name: new FormControl('', usernameValidator),
     stateGroup: new FormControl('')
   });
-  
+
   stateGroupOptions: Observable<StateGroup[]>;
-  user:any;
+  user: any;
   stateGroups: StateGroup[] = [{
     letter: 'A',
     names: ['Alabama', 'Alaska', 'Arizona', 'Arkansas']

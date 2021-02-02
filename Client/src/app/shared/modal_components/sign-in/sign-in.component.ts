@@ -1,10 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { LoginUser } from 'src/app/core/userState/user-actions';
-import { UserStore } from 'src/app/core/userState/user-state';
+import { nicknameValidator, passwordsValidators } from '../../helpes/form-variables';
 import { DialogData } from '../../models/DialogData';
 
 @Component({
@@ -15,8 +15,8 @@ import { DialogData } from '../../models/DialogData';
 export class SignINComponent implements OnInit {
 
   public mainForm: FormGroup = new FormGroup({
-    userName: new FormControl('',  [Validators.required, Validators.minLength(4), Validators.maxLength(45)]),
-    password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20) ]),
+    userName: new FormControl('',  nicknameValidator),
+    password: new FormControl('', passwordsValidators),
   });
 
   constructor(
@@ -29,10 +29,10 @@ export class SignINComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  get userName() { return this.mainForm.get('userName'); }
-  get password() { return this.mainForm.get('password'); }
+  get userName(): AbstractControl { return this.mainForm.get('userName'); }
+  get password(): AbstractControl { return this.mainForm.get('password'); }
 
-  async signIn()
+  async signIn(): Promise<void>
   {
     const username = this.userName.value;
     const password = this.password.value;

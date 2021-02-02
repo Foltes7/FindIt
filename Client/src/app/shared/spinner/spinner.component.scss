@@ -1,10 +1,12 @@
+@import 'variables';
+
 .spinner {
   width: 60px;
   height: 60px;
   border-radius: 50%;
   background-color: transparent;
   border: 2px solid rgb(230, 230, 230);
-  border-top: 2px solid #ffcaac;
+  border-top: 2px solid $blue-color;
   -webkit-animation: 1s spin linear infinite;
   animation: 1s spin linear infinite;
 }

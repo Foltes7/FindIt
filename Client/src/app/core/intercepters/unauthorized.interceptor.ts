@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
@@ -16,14 +16,17 @@ import { Router } from '@angular/router';
 export class UnauthorizedInterceptor implements HttpInterceptor {
 
   constructor(private store: Store,
-              private router: Router) {}
+              private router: Router,
+              private zone: NgZone) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError((err) => {
         if (err.status === 401) {
           this.store.dispatch(LogOutUser);
-          this.router.navigate(['/about']);
+          this.zone.run(() => {
+            this.router.navigate(['/about']);
+        });
         }
         if (!environment.production) {
           console.error(err);

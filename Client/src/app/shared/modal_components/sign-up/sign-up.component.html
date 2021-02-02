@@ -12,7 +12,7 @@
                 Min length 4
             </mat-error>
             <mat-error *ngIf="userName.errors?.maxlength">
-                Max length 45
+                Max length 50
             </mat-error>
         </mat-form-field>
 
@@ -28,10 +28,10 @@
             <mat-label>Password</mat-label>
             <input matInput placeholder="Password" type="password" name="password" formControlName="password">
             <mat-error *ngIf="password.errors?.minlength">
-                Min length 4
+                Min length 6
             </mat-error>
             <mat-error *ngIf="password.errors?.maxlength">
-                Max length 45
+                Max length 20
             </mat-error>
         </mat-form-field>
 
