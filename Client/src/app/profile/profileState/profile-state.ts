@@ -7,17 +7,33 @@ import { GetProfile, SetBussinessAccount, SetDefaultAccount } from './profile-ac
 
 interface ProfileState {
     currentPageProfile: Profile;
+    isExist: boolean;
+    isLoaded: boolean;
 }
 
 @State<ProfileState>({
     name: 'Profile',
     defaults: {
         currentPageProfile: null,
+        isExist: false,
+        isLoaded: false
     }
 })
 
 @Injectable()
 export class ProfileStore {
+
+    @Selector()
+    static isExist(state: ProfileState): boolean
+    {
+        return state.isExist;
+    }
+
+    @Selector()
+    static isLoaded(state: ProfileState): boolean
+    {
+        return state.isLoaded;
+    }
 
     @Selector()
     static currentPageProfile(state: ProfileState): Profile
@@ -32,16 +48,19 @@ export class ProfileStore {
     @Action(GetProfile)
     async getProfile({patchState, getState}: StateContext<ProfileState>, {username}: GetProfile): Promise<void>
     {
+        patchState({isLoaded: false});
         if (username !== getState().currentPageProfile?.userName){
-            const user = await this.profileService.getProfile(username).toPromise();
+            const resp = await this.profileService.getProfile(username).toPromise();
             patchState({
-                currentPageProfile: user
+                currentPageProfile: resp.user,
+                isExist: resp.isExist,
+                isLoaded: true
             });
         }
     }
 
     @Action(SetDefaultAccount)
-    async setDefaultAccount({patchState, getState}: StateContext<ProfileState>)
+    async setDefaultAccount({patchState, getState}: StateContext<ProfileState>): Promise<void>
     {
         await this.profileService.setDefaultAccount().toPromise();
         patchState({
@@ -50,7 +69,7 @@ export class ProfileStore {
     }
 
     @Action(SetBussinessAccount)
-    async setBussinessAccount({patchState, getState}: StateContext<ProfileState>)
+    async setBussinessAccount({patchState, getState}: StateContext<ProfileState>): Promise<void>
     {
         await this.profileService.setBussinessAccount().toPromise();
         patchState({

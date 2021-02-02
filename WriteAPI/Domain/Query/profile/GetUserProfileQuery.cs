@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Query.profile
 {
-    public class GetUserProfileQuery: BaseEntity, IRequest<UserDTO>
+    public class GetUserProfileQuery: BaseEntity, IRequest<GetUserResult>
     {
         public string GetByUsername { set; get; }
     }

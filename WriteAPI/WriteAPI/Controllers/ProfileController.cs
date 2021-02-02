@@ -38,7 +38,7 @@ namespace WriteAPI.Controllers
         }
 
         [HttpGet("{username}")]
-        public async Task<UserDTO> GetProfileById(string username)
+        public async Task<GetUserResult> GetProfileById(string username)
         {
             var query = new GetUserProfileQuery();
             this.SetRequestClaims(query);

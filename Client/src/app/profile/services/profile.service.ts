@@ -3,15 +3,16 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Profile } from '../models/profile';
+import { ProfileResult } from '../models/profileResult';
 
 @Injectable()
 export class ProfileService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getProfile(username: string): Observable<Profile>
+  getProfile(username: string): Observable<ProfileResult>
   {
-    return this.httpClient.get<Profile>(environment.writeAPI + `/api/profile/${username}`);
+    return this.httpClient.get<ProfileResult>(environment.writeAPI + `/api/profile/${username}`);
   }
 
   setDefaultAccount(): Observable<any>

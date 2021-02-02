@@ -22,7 +22,7 @@ const childrenProfile: Routes = [
 ];
 
 const routes: Routes = [
-  { path: ':id', component: ProfileComponent, children: childrenProfile }
+  { path: '', component: ProfileComponent, children: childrenProfile }
 ];
 
 @NgModule({

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace BI.Services.profile
 {
     public class ProfileHandlerQuery :
-         IRequestHandler<GetUserProfileQuery, UserDTO>
+         IRequestHandler<GetUserProfileQuery, GetUserResult>
     {
         private readonly IMapper mapper;
         private readonly UserManager<User> _userManager;
@@ -21,19 +21,19 @@ namespace BI.Services.profile
             this.mapper = mapper;
         }
 
-        public async Task<UserDTO> Handle(GetUserProfileQuery request, CancellationToken cancellationToken)
+        public async Task<GetUserResult> Handle(GetUserProfileQuery request, CancellationToken cancellationToken)
         {
             var user = await _userManager.FindByNameAsync(request.GetByUsername);
             if (user == null)
             {
-                throw new Exception("User not found");
+                return new GetUserResult { IsExist = false};
             }
             var userDTO = mapper.Map<UserDTO>(user);
             if(user.UserName == request.UserName && user.Email == request.Email)
             {
                 userDTO.OwnProfile = true;
             }
-            return userDTO;
+            return new GetUserResult { IsExist = true, User = userDTO };
         }
     }
 }

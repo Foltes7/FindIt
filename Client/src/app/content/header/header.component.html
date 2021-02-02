@@ -16,7 +16,7 @@
             <i class="icon-message"></i>
             <span class="counter">123</span>
         </div>
-        <div class="profile" [routerLink]="['/profile/', userName$ | async]" routerLinkActive="active">
+        <div class="profile" [routerLink]="['/', userName$ | async]" routerLinkActive="active">
             <div class="photo">
                 <img [src]="user ? user : 'assets/images/default_user.svg'" />
             </div>
