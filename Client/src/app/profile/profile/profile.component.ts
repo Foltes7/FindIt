@@ -15,6 +15,13 @@ import { ProfileStore } from '../profileState/profile-state';
 })
 export class ProfileComponent implements OnInit {
 
+
+  @Select(ProfileStore.isLoaded)
+  public isLoaded$: Observable<boolean>;
+
+  @Select(ProfileStore.isExist)
+  public isExist$: Observable<boolean>;
+
   @Select(ProfileStore.currentPageProfile)
   public profile$: Observable<Profile>;
 

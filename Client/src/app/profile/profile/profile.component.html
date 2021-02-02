@@ -1,4 +1,4 @@
-<div *ngIf="profile$ | async" class="content">
+<div *ngIf="(isLoaded$ | async) && (isExist$ | async)" class="content">
     <div class="second-menu">
         <div class="navigation">
             <div class="nav-item" routerLink="./" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
@@ -16,6 +16,9 @@
         <router-outlet></router-outlet>
     </div>
 </div>
-<div class="spinner-container">
-    <app-spinner *ngIf="!(profile$ | async)"></app-spinner>
+<div *ngIf="!(isLoaded$ | async)" class="spinner-container">
+    <app-spinner></app-spinner>
+</div>
+<div *ngIf="(isLoaded$ | async) && !(isExist$ | async)" class="not-found">
+    <p>User not founded</p>
 </div>

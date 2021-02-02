@@ -48,8 +48,8 @@ export class ProfileStore {
     @Action(GetProfile)
     async getProfile({patchState, getState}: StateContext<ProfileState>, {username}: GetProfile): Promise<void>
     {
-        patchState({isLoaded: false});
         if (username !== getState().currentPageProfile?.userName){
+            patchState({isLoaded: false});
             const resp = await this.profileService.getProfile(username).toPromise();
             patchState({
                 currentPageProfile: resp.user,

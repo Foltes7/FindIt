@@ -59,6 +59,13 @@
   align-items: center;
 }
 
+.not-found{
+  height: calc(100% - 56px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .line {
   z-index: 0;
   position: absolute;

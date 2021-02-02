@@ -26,7 +26,7 @@ export class ProfileInProfileComponent implements OnInit {
 
   followed = false;
   user: any;
-  constructor(private unsplashService: UnsplashService,
+  constructor(
               private store: Store,
               private router: Router,
               private authService: AuthService,
@@ -35,7 +35,7 @@ export class ProfileInProfileComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // this.unsplashService.getProfile().subscribe(x => this.user = x.user); // TODO REMOVE
+
   }
 
   async logOut(): Promise<void>
