@@ -1,10 +1,13 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { LoginUser } from 'src/app/core/userState/user-actions';
+import { UserStore } from 'src/app/core/userState/user-state';
 import { nicknameValidator, passwordsValidators } from '../../helpes/form-variables';
+import { options } from '../../helpes/snackbar';
 import { DialogData } from '../../models/DialogData';
 
 @Component({
@@ -24,6 +27,7 @@ export class SignINComponent implements OnInit {
     public dialogRef: MatDialogRef<SignINComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private router: Router,
+    private snackBar: MatSnackBar
     ) { }
 
   ngOnInit(): void {
@@ -37,8 +41,15 @@ export class SignINComponent implements OnInit {
     const username = this.userName.value;
     const password = this.password.value;
     await this.store.dispatch(new LoginUser(username, password)).toPromise();
-    this.close();
-    this.router.navigate(['/']);
+    if (this.store.selectSnapshot(UserStore.isLogin))
+    {
+      this.close();
+      this.router.navigate(['/']);
+      this.snackBar.open('Log in success', 'Dismiss', options);
+    }else{
+      this.snackBar.open('Incorrect login or password', 'Dismiss', options);
+      this.mainForm.reset();
+    }
   }
 
   close(): void

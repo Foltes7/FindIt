@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { passwordsMatchValidator, passwordsValidators } from 'src/app/shared/helpes/form-variables';
+import { options } from 'src/app/shared/helpes/snackbar';
 
 @Component({
   selector: 'app-security-menu-point',
@@ -51,9 +52,7 @@ export class SecurityMenuPointComponent implements OnInit, OnDestroy {
     {
       this.closeWindow.emit();
     }else{
-      this.snackBar.open(resp.message, 'Dismiss', {
-        horizontalPosition: 'right'
-      });
+      this.snackBar.open(resp.message, 'Dismiss', options);
       this.mainForm.reset();
     }
   }

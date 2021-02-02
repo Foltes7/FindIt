@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { interval, Subscription } from 'rxjs';
 import { AuthorizationModel } from '../models/authorizationModel';

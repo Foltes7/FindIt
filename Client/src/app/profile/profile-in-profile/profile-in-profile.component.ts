@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogConfig } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { LogOutUser } from 'src/app/core/userState/user-actions';
+import { options } from 'src/app/shared/helpes/snackbar';
 import { ProfileEditingComponent } from 'src/app/shared/modal_components/profile-editing/profile-editing.component';
 import { DialogService } from 'src/app/shared/services/dialog.service';
 import { UnsplashService } from 'src/app/shared/unsplash.service';
@@ -27,12 +29,13 @@ export class ProfileInProfileComponent implements OnInit {
   constructor(private unsplashService: UnsplashService,
               private store: Store,
               private router: Router,
-              private authService: AuthService, 
-              private dialogService: DialogService,) { }
+              private authService: AuthService,
+              private dialogService: DialogService,
+              private snackBar: MatSnackBar) { }
 
 
   ngOnInit(): void {
-    // this.unsplashService.getProfile().subscribe(x => this.user = x.user);
+    // this.unsplashService.getProfile().subscribe(x => this.user = x.user); // TODO REMOVE
   }
 
   async logOut(): Promise<void>
@@ -40,16 +43,19 @@ export class ProfileInProfileComponent implements OnInit {
     await this.authService.logout().toPromise();
     await this.store.dispatch(new LogOutUser()).toPromise();
     this.router.navigate(['/about']);
+    this.snackBar.open('Log out success', 'Dismiss', options);
   }
 
-  setBussinessAccount($event): void
+  async setBussinessAccount($event): Promise<void>
   {
-    this.store.dispatch(SetBussinessAccount);
+    await this.store.dispatch(SetBussinessAccount).toPromise();
+    this.snackBar.open('Bussiness account was seted', 'Dismiss', options);
   }
 
-  setDefaultAccount(): void
+  async setDefaultAccount(): Promise<void>
   {
-    this.store.dispatch(SetDefaultAccount);
+    await this.store.dispatch(SetDefaultAccount).toPromise();
+    this.snackBar.open('Default account was seted', 'Dismiss', options);
   }
 
   openProfileEditing(): void

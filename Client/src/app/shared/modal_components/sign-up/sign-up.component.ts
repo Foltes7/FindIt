@@ -1,13 +1,16 @@
 import { AfterViewInit, Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { LoginUser, RegisterUser } from 'src/app/core/userState/user-actions';
+import { UserStore } from 'src/app/core/userState/user-state';
 import { passwordsMatchValidator, passwordsValidators, nicknameValidator, usernameValidator } from '../../helpes/form-variables';
+import { options } from '../../helpes/snackbar';
 import { DialogData } from '../../models/DialogData';
 
 @Component({
@@ -22,7 +25,8 @@ export class SignUPComponent implements OnInit, OnDestroy, AfterViewInit {
              @Inject(MAT_DIALOG_DATA) public data: DialogData,
              private authService: AuthService,
              private store: Store,
-             private router: Router, ) { }
+             private router: Router,
+             private snackBar: MatSnackBar ) { }
 
   destroy = new Subject<void>();
 
@@ -88,8 +92,15 @@ export class SignUPComponent implements OnInit, OnDestroy, AfterViewInit {
     {
       await this.store.dispatch(new RegisterUser(username, name, password, confirm, email)).toPromise();
       await this.store.dispatch(new LoginUser(username, password)).toPromise();
-      this.close();
-      this.router.navigate(['/']);
+      if (this.store.selectSnapshot(UserStore.isLogin))
+      {
+        this.close();
+        this.router.navigate(['/']);
+        this.snackBar.open('Log in success', 'Dismiss', options);
+      }else{
+        this.snackBar.open('Incorrect login or password', 'Dismiss', options);
+        this.mainForm.reset();
+      }
     }else{
       this.userName.setErrors({username: true});
     }
