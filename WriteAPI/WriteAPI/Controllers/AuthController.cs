@@ -2,6 +2,7 @@
 using Common.DTO.Auth;
 using Context.GenericRepository;
 using Domain.Commands.auth;
+using Domain.Commands.profile;
 using Domain.Query.auth;
 using JWT;
 using Microsoft.AspNetCore.Authentication;
@@ -139,6 +140,31 @@ namespace WriteAPI.Controllers
                 return Ok(new { valid = true });
             }
             return Ok(new { valid = false });
+        }
+
+
+        [HttpPost("restore")]
+        public async Task<ActionResult<ChangePasswordResult>> ChangePassword(ChangePasswordCommand command)
+        {
+            var userName = User.Identity.Name;
+            var user = await _userManager.FindByNameAsync(userName);
+            if(user != null)
+            {
+                var successs = await _userManager.CheckPasswordAsync(user, command.OldPassword);
+                if(successs)
+                {
+                    await _userManager.ChangePasswordAsync(user, command.OldPassword, command.NewPassword);
+                    return Ok(new ChangePasswordResult { Success = true });
+                }
+                else
+                {
+                    return Ok(new ChangePasswordResult { 
+                        Success = false,
+                        Message = "Incorrect password"
+                    });
+                }
+            }
+            throw new Exception("User was not found");
         }
 
     }

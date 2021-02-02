@@ -1,4 +1,4 @@
-<app-modal-title (closeEvent)="close()" [title]="data.title"></app-modal-title>
+<app-modal-title (closeEvent)="closeHandler()" [title]="data.title"></app-modal-title>
 <div class="container">
     <div class="sidebar">
         <div *ngFor="let item of menu" (click)="setActive(item)" class="block" [ngClass]="{'active': active === item}">
@@ -10,8 +10,8 @@
     </div>
     <div class="content">
         <container-element [ngSwitch]="active">
-            <app-profile-menu-point *ngSwitchCase="menuEnum.Profile"></app-profile-menu-point>
-            <app-security-menu-point *ngSwitchCase="menuEnum.Security"></app-security-menu-point>
+            <app-profile-menu-point *ngSwitchCase="menuEnum.Profile" ></app-profile-menu-point>
+            <app-security-menu-point *ngSwitchCase="menuEnum.Security" (closeWindow)="closeHandler()"></app-security-menu-point>
             <div *ngSwitchDefault></div>
          </container-element>
     </div>

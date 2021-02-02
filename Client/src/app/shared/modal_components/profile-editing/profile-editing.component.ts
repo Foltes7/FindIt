@@ -28,10 +28,13 @@ export class ProfileEditingComponent implements OnInit {
   }
 
 
-  close(): void
+  closeHandler(): void
   {
+    console.log('close');
     this.dialogRef.close();
   }
+
+
 
   setActive(point: string){
     this.active = point;

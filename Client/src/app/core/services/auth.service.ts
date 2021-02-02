@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthorizationModel } from '../models/authorizationModel';
+import { ChangePasswordResponse } from '../models/changePasswordResponse';
 import { ValidateResponse } from '../models/validateResponse';
 
 @Injectable()
@@ -32,12 +33,12 @@ export class AuthService {
     return this.httpClient.post<AuthorizationModel>(environment.writeAPI + '/api/Auth/login', obj);
   }
 
-  logout()
+  logout(): Observable<any>
   {
     return this.httpClient.post(environment.writeAPI + '/api/Auth/logout', null);
   }
 
-  refreshToken(refreshToken: string)
+  refreshToken(refreshToken: string): Observable<any>
   {
     const obj = {
       refreshToken
@@ -59,5 +60,15 @@ export class AuthService {
       username,
     };
     return this.httpClient.post<ValidateResponse>(environment.writeAPI + '/api/Auth/validate/username', obj);
+  }
+
+  changePassword(oldPassword: string, newPassword: string, confirmNewPassword: string): Observable<ChangePasswordResponse>
+  {
+    const obj = {
+      oldPassword,
+      newPassword,
+      confirmNewPassword
+    };
+    return this.httpClient.post<ChangePasswordResponse>(environment.writeAPI + `/api/Auth/restore`, obj);
   }
 }

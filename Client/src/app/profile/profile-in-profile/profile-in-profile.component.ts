@@ -52,7 +52,7 @@ export class ProfileInProfileComponent implements OnInit {
     this.store.dispatch(SetDefaultAccount);
   }
 
-  openProfileEditing()
+  openProfileEditing(): void
   {
     const config: MatDialogConfig =  {
       width: '950px',
@@ -62,7 +62,9 @@ export class ProfileInProfileComponent implements OnInit {
         title: 'Profile editing'
       },
       panelClass: 'custom-dialog-class',
-      disableClose: true
+      disableClose: true,
+      autoFocus: true,
+      restoreFocus: false
     };
     this.dialogService.openDialog(ProfileEditingComponent, config);
   }

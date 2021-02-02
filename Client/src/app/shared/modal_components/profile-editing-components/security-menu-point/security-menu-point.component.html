@@ -29,6 +29,6 @@
         </mat-error>
     </mat-form-field>
     <div class="update-button">
-        <button [disabled]="mainForm.invalid || mainForm.untouched" mat-flat-button color="primary">Update</button>
+        <button  mat-flat-button color="primary" (click)="changePassword($event)">Change password</button>
     </div>
 </form>

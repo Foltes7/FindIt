@@ -10,7 +10,6 @@ import { CommentsComponent } from './full-thing-components/comments/comments.com
 import { OverviewComponent } from './full-thing-components/overview/overview.component';
 import { PhotosComponent } from './full-thing-components/photos/photos.component';
 import { ProfileInProfileComponent } from './profile-in-profile/profile-in-profile.component';
-import { ProfileService } from './services/profile.service';
 
 
 
