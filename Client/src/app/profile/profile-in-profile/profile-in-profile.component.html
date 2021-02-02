@@ -1,84 +1,88 @@
 <div class="container">
-    <div class="main-info width-content">
-        <div class="photo" [ngClass]="{'without-photo-border': !user?.profile_image.large}">
-            <img *ngIf="user?.profile_image.large" [src]="user?.profile_image.large" />
-            <img class="default" *ngIf="!user?.profile_image.large" src="assets/images/default_user.svg">
-        </div>
-        <div class="info">
-            <p class="name">Tesla Official</p>
-            <p class="username">@tesla</p>
-            <p class="description">Under the creative direction of Gucci is redefined a
-                s a luxury brand with a contemporary approach to fashion.Under the creative direction of Gucci is
-                redefined ay brand with a conte</p>
-        </div>
-    </div>
-    <div class="follow width-content">
-        <div class="followers">
-            <p>0 followers</p>
-        </div>
-        <div class="following">
-            <p>12.2k following</p>
-        </div>
-    </div>
-    <div class="buttons width-content">
-        <div class="edit-section">
-            <button *ngIf="(profile$ | async).ownProfile" (click)="openProfileEditing()"  mat-stroked-button>
-                Edit profile
-            </button>
-        </div>
-        <div *ngIf="!(profile$ | async).ownProfile" class="user-section">
-            <button class="contact-button"  mat-stroked-button>
-                <div class="content-icons">
-                    <p>Contact</p>
-                    <i class="icon-contact"></i>
-                </div>
-            </button>
-
-            <button *ngIf="!followed" mat-stroked-button>
-                <div class="content-icons color-blue">
-                    <p>Follow</p>
-                    <i class="icon-like"></i>
-                </div>
-            </button>
-
-            <button *ngIf="followed" mat-stroked-button>
-                <div class="content-icons">
-                    <p>Unfollow</p>
-                </div>
-            </button>
-        </div>
-    </div>
-    <div class="divider width-content">
-    </div>
-    <div *ngIf="(profile$ | async).ownProfile" class="business-container width-content">
-        <button (click)="setBussinessAccount($event)" *ngIf="!(profile$ | async).isBussinessAcc" class="button-business" mat-stroked-button>
-            Set business account
-        </button>
-        <button (click)="setDefaultAccount()" *ngIf="(profile$ | async).isBussinessAcc" class="button-default" mat-stroked-button>
-            Set default account
-        </button>
-    </div>
-    <div *ngIf="(profile$ | async).ownProfile" class="divider width-content">
-    </div>
-    <div class="additional-info width-content">
-        <div class="site">
-            <div class="icon">
-                <i class="icon-site"></i>
+    <div class="information-container">
+        <div class="main-info">
+            <div class="photo" [ngClass]="{'without-photo-border': !user?.profile_image.large}">
+                <img *ngIf="user?.profile_image.large" [src]="user?.profile_image.large" />
+                <img class="default" *ngIf="!user?.profile_image.large" src="assets/images/default_user.svg">
             </div>
-            <p>icomoon.io</p>
-        </div>
-        <div class="location">
-            <div class="icon">
-                <i class="icon-location"></i>
+            <div class="info">
+                <p class="name">{{(profile$ | async).name}}</p>
+                <p class="username">@{{(profile$ | async).userName}}</p>
+                <p class="description">Under the creative direction of Gucci is redefined a
+                    s a luxury brand with a contemporary approach to fashion.Under the creative direction of Gucci is
+                    redefined ay brand with a conte</p>
             </div>
-            <p>Kyiv, Ukraine</p>
         </div>
-    </div>
-    <div class="divider width-content">
-    </div>
-    <div *ngIf="(profile$ | async).ownProfile" class="logout">
-        <button (click)="logOut()"  mat-stroked-button>
-            Log out
-        </button>
+        <div class="follow">
+            <div class="followers">
+                <p>0 followers</p>
+            </div>
+            <div class="following">
+                <p>12.2k following</p>
+            </div>
+        </div>
+        <div class="buttons">
+            <div class="edit-section">
+                <button *ngIf="(profile$ | async).ownProfile" (click)="openProfileEditing()" mat-stroked-button>
+                    Edit profile
+                </button>
+            </div>
+            <div *ngIf="!(profile$ | async).ownProfile" class="user-section">
+                <button class="contact-button" mat-stroked-button>
+                    <div class="content-icons">
+                        <p>Contact</p>
+                        <i class="icon-contact"></i>
+                    </div>
+                </button>
+
+                <button *ngIf="!followed" mat-stroked-button>
+                    <div class="content-icons color-blue">
+                        <p>Follow</p>
+                        <i class="icon-like"></i>
+                    </div>
+                </button>
+
+                <button *ngIf="followed" mat-stroked-button>
+                    <div class="content-icons">
+                        <p>Unfollow</p>
+                    </div>
+                </button>
+            </div>
+        </div>
+        <div class="divider">
+        </div>
+        <div *ngIf="(profile$ | async).ownProfile" class="business-container">
+            <button (click)="setBussinessAccount($event)" *ngIf="!(profile$ | async).isBussinessAcc"
+                class="button-business" mat-stroked-button>
+                Set business account
+            </button>
+            <button (click)="setDefaultAccount()" *ngIf="(profile$ | async).isBussinessAcc" class="button-default"
+                mat-stroked-button>
+                Set default account
+            </button>
+        </div>
+        <div *ngIf="(profile$ | async).ownProfile" class="divider">
+        </div>
+        <div class="additional-info">
+            <div class="site">
+                <div class="icon">
+                    <i class="icon-site"></i>
+                </div>
+                <p>icomoon.io</p>
+            </div>
+            <div class="location">
+                <div class="icon">
+                    <i class="icon-location"></i>
+                </div>
+                <p>Kyiv, Ukraine</p>
+            </div>
+        </div>
+        <div class="divider">
+        </div>
+        <div *ngIf="(profile$ | async).ownProfile" class="logout">
+            <button (click)="logOut()" mat-stroked-button>
+                Log out
+            </button>
+        </div>
     </div>
 </div>

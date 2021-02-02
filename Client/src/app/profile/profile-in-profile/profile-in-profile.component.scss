@@ -3,170 +3,170 @@
 .container {
     padding-top: 30px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     width: 100%;
-    align-items: center;
-
-    .width-content {
-        width: 560px;
-    }
-
-    .main-info {
+    .information-container{
         display: flex;
-
-        .photo {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
+        flex-direction: column;
+        width: 30%;
+    
+        .main-info {
             display: flex;
-            align-items: center;
-            justify-content: center;
-
-            img {
-                border-radius: 50%;
+    
+            .photo {
+                width: 160px;
                 height: 160px;
-                object-fit: cover;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+    
+                img {
+                    border-radius: 50%;
+                    height: 160px;
+                    object-fit: cover;
+                }
+    
+                .default {
+                    border-radius: 0;
+                    height: 60px;
+                    object-fit: cover;
+                }
             }
-
-            .default {
-                border-radius: 0;
-                height: 60px;
-                object-fit: cover;
+    
+            .without-photo-border {
+                border: 1px solid #a8a8a8;
+            }
+    
+            .info {
+                width: calc(100% - 160px);
+                padding-left: 40px;
+    
+                .name {
+                    font-weight: bold;
+                    font-size: 1.375rem;
+                }
+    
+                .username {
+                    margin-top: 10px;
+                    font-size: 1.125rem;
+                }
+    
+                .description {
+                    margin-top: 15px;
+                }
             }
         }
-
-        .without-photo-border {
-            border: 1px solid #a8a8a8;
+    
+        .follow {
+            padding-left: 200px;
+            margin-top: 10px;
+            display: flex;
+    
+            .followers {
+                width: 150px;
+            }
+    
+            .following {
+                width: 150px;
+            }
+    
+            p {
+                cursor: pointer;
+    
+                &:hover {
+                    font-weight: 500;
+                }
+            }
         }
-
-        .info {
-            width: calc(100% - 160px);
-            padding-left: 40px;
-
-            .name {
-                font-weight: bold;
-                font-size: 1.375rem;
+    
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+    
+            .edit-section {
+                display: flex;
+                justify-content: center;
+                width: 160px;
             }
-
-            .username {
-                margin-top: 10px;
-                font-size: 1.125rem;
+    
+            .user-section {
+                display: flex;
+                justify-content: flex-end;
+                width: calc(100% - 160px);
+    
+                .contact-button {
+                    margin-right: 30px;
+                }
+    
             }
-
-            .description {
+        }
+    
+        .divider {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            height: 2px;
+            background: $bottom-color-line;
+        }
+    
+        .business-container {
+            .button-business {
+                width: 200px;
+            }
+            .button-default {
+                width: 200px;
+            }
+        }
+    
+        .additional-info {
+            .location {
                 margin-top: 15px;
+                display: flex;
+                align-items: center;
+    
+                .icon {
+                    height: 100%;
+                    width: 30px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+    
+                    i:before{
+                        color: $active-header-icon-color;
+                    }
+                }
+    
+                p {
+                    margin-left: 13px;
+    
+                }
+            }
+    
+            .site {
+                display: flex;
+                align-items: center;
+    
+                .icon {
+                    height: 100%;
+                    width: 30px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+    
+                    i:before{
+                        color: $active-header-icon-color;
+                    }
+                }
+    
+                p {
+                    margin-left: 13px;
+                }
             }
         }
-    }
-
-    .follow {
-        padding-left: 200px;
-        margin-top: 10px;
-        display: flex;
-
-        .followers {
-            width: 150px;
-        }
-
-        .following {
-            width: 150px;
-        }
-
-        p {
-            cursor: pointer;
-
-            &:hover {
-                font-weight: 500;
-            }
-        }
-    }
-
-    .buttons {
-        margin-top: 20px;
-        display: flex;
-
-        .edit-section {
+        .logout{
+            margin-top: 20px;
             display: flex;
             justify-content: center;
-            width: 160px;
         }
-
-        .user-section {
-            display: flex;
-            justify-content: flex-end;
-            width: calc(100% - 160px);
-
-            .contact-button {
-                margin-right: 30px;
-            }
-
-        }
-    }
-
-    .divider {
-        margin-top: 20px;
-        margin-bottom: 20px;
-        height: 2px;
-        background: $bottom-color-line;
-    }
-
-    .business-container {
-        .button-business {
-            width: 200px;
-        }
-        .button-default {
-            width: 200px;
-        }
-    }
-
-    .additional-info {
-        .location {
-            margin-top: 15px;
-            display: flex;
-            align-items: center;
-
-            .icon {
-                height: 100%;
-                width: 30px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                i:before{
-                    color: $active-header-icon-color;
-                }
-            }
-
-            p {
-                margin-left: 13px;
-
-            }
-        }
-
-        .site {
-            display: flex;
-            align-items: center;
-
-            .icon {
-                height: 100%;
-                width: 30px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                i:before{
-                    color: $active-header-icon-color;
-                }
-            }
-
-            p {
-                margin-left: 13px;
-            }
-        }
-    }
-    .logout{
-        margin-top: 20px;
-        display: flex;
-        justify-content: center;
     }
 }
